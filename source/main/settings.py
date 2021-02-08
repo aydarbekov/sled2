@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.postgres',
     'django.contrib.staticfiles',
+    'webapp'
+
 ]
 
 MIDDLEWARE = [
@@ -79,6 +82,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass
+
 
 
 # Password validation
