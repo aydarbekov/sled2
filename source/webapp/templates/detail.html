@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block menu %}
+{#    <a class="nav-link" href="{% url 'webapp:search' %}">Home</a>#}
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ firma.0.full_name_ru }}</a>
+{% endblock %}
+{% block content %}
+    <div class="card yust">
+        <h5 class="card-header text-center">Данные по базе МинЮста</h5>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Название организации</dt>
+                <dd class="col-sm-9">{{ firma.0.full_name_ru }}</dd>
+                <dt class="col-sm-3">Регистрационный номер</dt>
+                <dd class="col-sm-9">{{ firma.0.registration_number }}</dd>
+                <dt class="col-sm-3">Окпо код</dt>
+                <dd class="col-sm-9">{{ firma.0.okpo_cod }}</dd>
+                <dt class="col-sm-3">ИНН</dt>
+                <dd class="col-sm-9">{{ firma.0.inn }}</dd>
+                <dt class="col-sm-3">Адрес</dt>
+                <dd class="col-sm-9">{{ firma.0.address_region }}, {{ firma.0.address_district }}, {{ firma.0.address_city }},
+                    {{ firma.0.address_microdistrict }}, {{ firma.0.address_street }}, {{ firma.0.house_number }}, {{ firma.0.apartment_number }}</dd>
+                <dt class="col-sm-3">Телефон</dt>
+                <dd class="col-sm-9">{{ firma.0.phone }}</dd>
+                <dt class="col-sm-3">Электронная почта</dt>
+                <dd class="col-sm-9">{{ firma.0.email }}</dd>
+                <dt class="col-sm-3">Перерегистрация</dt>
+                <dd class="col-sm-9">{{ firma.0.reg_or_rereg }}</dd>
+                <dt class="col-sm-3">Директор</dt>
+                <dd class="col-sm-9">{{ firma.0.director }}</dd>
+                <dt class="col-sm-3">Основной вид деятельности</dt>
+                <dd class="col-sm-9">{{ firma.0.main_activity }}</dd>
+                <dt class="col-sm-3">Код экономической деятельности</dt>
+                <dd class="col-sm-9">{{ firma.0.economic_activity_code }}</dd>
+                <dt class="col-sm-3">Учредители</dt>
+                <dd class="col-sm-9">{{ firma.0.founders }}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="card tizme">
+        <h5 class="card-header text-center">Данные по базе Тизме</h5>
+        <div class="card-body">
+            <dl class="row">
+                {% for people in firma.1 %}
+                    <dt class="col-sm-3">ИНН</dt>
+                    <dd class="col-sm-9">{{ people.inn.capitalize }}</dd>
+                    <dt class="col-sm-3">Фамилие</dt>
+                    <dd class="col-sm-9">{{ people.last_name }}</dd>
+                    <dt class="col-sm-3">Имя</dt>
+                    <dd class="col-sm-9">{{ people.first_name }}</dd>
+                    <dt class="col-sm-3">Отчество</dt>
+                    <dd class="col-sm-9">{{ people.middle_name }}</dd>
+                    <dt class="col-sm-3">Адрес</dt>
+                    <dd class="col-sm-9">{{ people.address }}</dd>
+                    <dt class="col-sm-3">УИК</dt>
+                    <dd class="col-sm-9">{{ people.uik }}</dd>
+                    <dt class="col-sm-3">ТИК</dt>
+                    <dd class="col-sm-9">{{ people.tik }}</dd>
+                {% endfor %}
+            </dl>
+        </div>
+    </div>
+    <div class="fdsf text-center">
+        <button class="btn btn-dark" type="button"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}" class="link-light">Поиск связей</a></button>
+    </div>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{#    <span class="asd"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}">Второй уровен</a></span>#}
+{% endblock %}

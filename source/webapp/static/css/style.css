@@ -1,0 +1,61 @@
+body{
+    background-color: #3CB371;
+}
+.navbar{
+    background-color: #5F9EA0;
+}
+a {
+    text-decoration: none;
+}
+
+.text-center {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.azamat {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.tizme{
+    margin-top: 30px;
+}
+
+.yust{
+    margin-top: 30px;
+}
+
+/*.btn-outline-secondary{*/
+    /*width: 100%;*/
+/*}*/
+
+.btn-secondary{
+    width: 100%;
+}
+
+.det{
+    margin-top: 30px;
+}
+
+.det_2{
+    width: 100%;
+}
+
+.right{
+    position: absolute;
+    top: 70px;
+    right: 10px;
+}
+
+.founders{
+    position: relative;
+    right: 10px;
+    bottom: 0px;
+}
+
+.card{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

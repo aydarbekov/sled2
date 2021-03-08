@@ -5,7 +5,7 @@ from django.db import models
 
 class Firma(models.Model):
     full_name_ru = models.CharField(max_length=500, null=True, blank=True, verbose_name='Полное наименование ru')
-    full_name_kg = models.CharField(max_length=500, null=True, blank=True, verbose_name='Полное наименование kg')
+    full_name_kg = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Полное наименование kg')
     short_name_ru = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сокращенное наименование ru')
     short_name_kg = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сокращенное наименование kg')
     org_form = models.CharField(max_length=220, null=True, blank=True, verbose_name='Организационно правовая форма')
@@ -39,11 +39,11 @@ class Firma(models.Model):
                                                verbose_name='Количество учредителей юридических лиц')
     total_count_of_founders = models.CharField(max_length=220, null=True, blank=True,
                                                verbose_name='Общее количество учредителей')
-    founders = models.CharField(max_length=5000, null=True, blank=True, verbose_name='Учредители')
-    url_minjust_site = models.CharField(max_length=220, null=True, blank=True, verbose_name='Ссылка на сайт')
+    founders = models.TextField(max_length=10000, null=True, blank=True, verbose_name='Учредители')
+    url_minjust_site = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Ссылка на сайт')
 
     def __str__(self):
-        return self.inn
+        return self.full_name_kg
 
 
 # Otkrytyi budget
@@ -51,13 +51,13 @@ class OpenBudget(models.Model):
     type = models.CharField(max_length=220, null=True, blank=True, verbose_name='Тип')
     inn = models.CharField(max_length=220, null=True, blank=True, verbose_name='ИНН организации')
     docs_number = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер документа')
-    period = models.DateField(null=True, blank=True, verbose_name='Период')
-    payer = models.CharField(max_length=220, null=True, blank=True, verbose_name='Плательщик')
-    purpose_of_payment = models.CharField(max_length=220, null=True, blank=True, verbose_name='Назначение платежа')
+    period = models.CharField(max_length=220, null=True, blank=True, verbose_name='Период')
+    payer = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Плательщик')
+    purpose_of_payment = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Назначение платежа')
     amount = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сумма')
 
     def __str__(self):
-        return f'{self.inn} {self.payer}'
+        return self.inn
 
 
 # Tizme
@@ -95,16 +95,17 @@ class Supliers(models.Model):
 # Tenderi
 class Tender(models.Model):
     tenders_num = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер тендера')
-    org_name = models.CharField(max_length=220, null=True, blank=True, verbose_name='Название организации')
+    org_name = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Название организации')
     purchases_metod = models.CharField(max_length=220, null=True, blank=True, verbose_name='Метод закупок')
     date_start = models.CharField(max_length=220, null=True, blank=True, verbose_name='Дата публикации')
     date_end = models.CharField(max_length=220, null=True, blank=True, verbose_name='Дата завершения')
     gokz = models.CharField(max_length=220, null=True, blank=True, verbose_name='Гарантийное обеспечение конкурсной заявки')
-    purchases_name = models.CharField(max_length=220, null=True, blank=True, verbose_name='Наименование закупки')
+    purchases_name = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Наименование закупки')
     purchases_format = models.CharField(max_length=220, null=True, blank=True, verbose_name='Формат закупки')
     planned_amount = models.CharField(max_length=220, null=True, blank=True, verbose_name='Планируемая сумма')
     valuta = models.CharField(max_length=220, null=True, blank=True, verbose_name='Валюта конкурса')
     validity = models.CharField(max_length=220, null=True, blank=True, verbose_name='Срок действия конкурсных заявок')
+    count_of_lots = models.CharField(max_length=220, null=True, blank=True, verbose_name='Количество лотов')
 
     def __str__(self):
         return self.tenders_num
@@ -113,11 +114,11 @@ class Tender(models.Model):
 class Lot(models.Model):
     tender_num = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер тендера')
     lots_number = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер лота')
-    lots_name = models.CharField(max_length=220, null=True, blank=True, verbose_name='Наименование лота')
+    lots_name = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Наименование лота')
     lots_amount = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сумма')
-    address = models.CharField(max_length=220, null=True, blank=True, verbose_name='Адрес и место поставки')
-    condition = models.CharField(max_length=220, null=True, blank=True, verbose_name='Условие поставки')
-    timing = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сроки поставки')
+    address = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Адрес и место поставки')
+    condition = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Условие поставки')
+    timing = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Сроки поставки')
 
     def __str__(self):
         return self.tender_num
@@ -127,12 +128,12 @@ class Submission(models.Model):
     tender_num = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер тендера')
     lot_number = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер лота')
     sum = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сумма предложения')
-    org_name = models.CharField(max_length=220, null=True, blank=True, verbose_name='Название организации')
+    org_name = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Название организации')
     valuta = models.CharField(max_length=220, null=True, blank=True, verbose_name='Валюта')
     gokz_sum = models.CharField(max_length=220, null=True, blank=True, verbose_name='ГОКЗ сумма')
     gokz_form = models.CharField(max_length=220, null=True, blank=True, verbose_name='ГОКЗ форма')
     tax_date = models.CharField(max_length=220, null=True, blank=True, verbose_name='Налог на')
-    tax_status = models.CharField(max_length=220, null=True, blank=True, verbose_name='Налог статус')
+    tax_status = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Налог статус')
     soc_date = models.CharField(max_length=220, null=True, blank=True, verbose_name='Соцфонд на')
     soc_status = models.CharField(max_length=220, null=True, blank=True, verbose_name='Соцфонд статус')
 
@@ -143,10 +144,10 @@ class Submission(models.Model):
 class Product(models.Model):
     tender_num = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер тендера')
     lots_number = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер лота')
-    okgz = models.CharField(max_length=220, null=True, blank=True, verbose_name='Класс ОКГЗ')
+    okgz = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Класс ОКГЗ')
     measure = models.CharField(max_length=220, null=True, blank=True, verbose_name='Единица измерения')
     count = models.CharField(max_length=220, null=True, blank=True, verbose_name='Количество')
-    specification = models.CharField(max_length=220, null=True, blank=True, verbose_name='Спецификация')
+    specification = models.TextField(max_length=5000, null=True, blank=True, verbose_name='Спецификация')
     file = models.CharField(max_length=220, null=True, blank=True, verbose_name='Файл')
 
     def __str__(self):
@@ -156,10 +157,10 @@ class Product(models.Model):
 class Winner(models.Model):
     tender_num = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер тендера')
     lots_number = models.CharField(max_length=220, null=True, blank=True, verbose_name='Номер лота')
-    winner_name = models.CharField(max_length=220, null=True, blank=True, verbose_name='Название победителя')
+    winner_name = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Название победителя')
     winner_status = models.CharField(max_length=220, null=True, blank=True, verbose_name='Статус победителя')
     winner_sum = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сумма победителя')
-    canceled_reason = models.CharField(max_length=220, null=True, blank=True, verbose_name='Причина отказа')
+    canceled_reason = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Причина отказа')
     planned_sum = models.CharField(max_length=220, null=True, blank=True, verbose_name='Планируемая сумма')
 
     def __str__(self):

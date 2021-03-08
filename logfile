@@ -1,0 +1,10 @@
+2021-02-11 14:08:55.410 +06 [7081] LOG:  starting PostgreSQL 13.1 on x86_64-apple-darwin20.1.0, compiled by Apple clang version 12.0.0 (clang-1200.0.32.27), 64-bit
+2021-02-11 14:08:55.414 +06 [7081] LOG:  listening on IPv6 address "::1", port 5432
+2021-02-11 14:08:55.414 +06 [7081] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-02-11 14:08:55.415 +06 [7081] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-02-11 14:08:55.418 +06 [7082] LOG:  database system was shut down at 2021-02-11 14:08:52 +06
+2021-02-11 14:08:55.422 +06 [7081] LOG:  database system is ready to accept connections
+2021-02-11 14:10:14.188 +06 [7942] FATAL:  role "searcherazamat" does not exist
+2021-02-11 14:10:20.420 +06 [7997] FATAL:  role "searcherazamat" does not exist
+2021-02-11 14:10:29.506 +06 [8054] FATAL:  role "searcherazamat" does not exist
+2021-02-11 14:11:05.981 +06 [7202] FATAL:  terminating connection due to unexpected postmaster exit
