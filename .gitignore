@@ -2,7 +2,7 @@ venv
 virtualenv
 .idea
 .vscode
-.DS_Store
+.DS_Storecd
 __pycache__
 *.pyc
 *.log
