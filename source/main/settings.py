@@ -131,12 +131,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'staticfiles'),
+# )
 
 LOGIN_REDIRECT_URL = reverse_lazy('webapp:search')
 LOGOUT_REDIRECT_URL = reverse_lazy('webapp:search')
+

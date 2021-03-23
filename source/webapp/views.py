@@ -7,7 +7,7 @@ from django.views import View
 # import bulk_update_or_create
 from django.views.generic import DetailView, ListView
 
-from webapp.models import Firma, People
+from webapp.models import Firma, People, OpenBudget
 
 
 class SearchView(ListView):
@@ -16,22 +16,26 @@ class SearchView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
-        search_str = self.request.GET.get('search_str')
-        if search_str:
-            firma_objects = Firma.objects.filter((Q(full_name_ru__icontains=search_str) | Q(full_name_kg__icontains=search_str)
-                                                  | Q(director__icontains=search_str) | Q(founders__icontains=search_str) |
-                                                  Q(inn__icontains=search_str)))
-            # print(firma_objects)
-            context['firmas'] = firma_objects
-            context['search_str'] = search_str
+        search_str_1 = self.request.GET.get('search_str')
+        if search_str_1:
+            search_str = " ".join(search_str_1.split())
 
-        return context
+
+            if search_str:
+                firma_objects = Firma.objects.filter((Q(full_name_ru__icontains=search_str) | Q(full_name_kg__icontains=search_str)
+                                                      | Q(director__icontains=search_str) | Q(founders__icontains=search_str) |
+                                                      Q(inn__icontains=search_str)))
+                # print(firma_objects)
+                context['firmas'] = firma_objects
+                context['search_str'] = search_str
+
+            return context
 
 
 class FirmaView(ListView):
     model = Firma
     template_name = 'detail.html'
-    paginate_by = 10
+    paginate_by = 5
     paginate_orphans = 0
 
     def get(self, request, *args, **kwargs):
@@ -55,6 +59,12 @@ class FirmaView(ListView):
         for obj in director_objects:
             print(obj.first_name)
 
+        # inn = firma.inn
+        # inn_objects = OpenBudget.objects.filter(Q(inn__icontains=inn))
+        # print(inn_objects, 'INN')
+        # print(inn, 'BYYYYY')
+        #
+        # context['budget'] = inn_objects
         context['firma'] = firma_inn
         print(context['firma'])
 
@@ -72,8 +82,18 @@ class FirmaSecondView(ListView):
         firma = Firma.objects.get(pk=kwargs['pk'])
 
         f = []
-        founders = firma.founders.strip('[]').replace('\'', '').split(',')
-        print(founders)
+        print(firma.founders)
+        old_founders = firma.founders.strip('[]').split(',')
+        print(old_founders,'foundres')
+        founders = []
+        for founder in old_founders:
+            fo = founder.strip("' ")
+            print(founder, 'цикл')
+            founders.append(fo)
+        print(founders,'за циклом')
+        founders = founders
+
+
 
         print(len(founders))
         if founders[0] != '':
@@ -86,6 +106,7 @@ class FirmaSecondView(ListView):
                 f.append(fff)
 
         else:
+            pass
             print('none')
         print(f)
         print(len(firma.director))
@@ -97,7 +118,7 @@ class FirmaSecondView(ListView):
 
 
         print(firma.address_street)
-        if firma.address_street != '':
+        if firma.address_street != None and firma.address_street != '':
             if '.' in firma.address_street:
                 street = firma.address_street.split('.')[1]
             else:
@@ -105,6 +126,8 @@ class FirmaSecondView(ListView):
             addresses = Firma.objects.filter(Q(address_street__icontains=street) & Q(house_number__icontains=firma.house_number))
             print(addresses)
             context['addresses'] = addresses
+        else:
+            pass
         context['firmas_2'] = f
         print(firma.phone, 'dfgfddfggit ')
 

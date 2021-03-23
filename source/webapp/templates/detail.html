@@ -9,7 +9,11 @@
         <div class="card-body">
             <dl class="row">
                 <dt class="col-sm-3">Название организации</dt>
-                <dd class="col-sm-9">{{ firma.0.full_name_ru }}</dd>
+                {% if firma.0.full_name_ru %}
+                    <dd class="col-sm-9">{{ firma.0.full_name_ru }}</dd>
+                {% else %}
+                    <dd class="col-sm-9">Отсутствует</dd>
+                {% endif %}
                 <dt class="col-sm-3">Регистрационный номер</dt>
                 <dd class="col-sm-9">{{ firma.0.registration_number }}</dd>
                 <dt class="col-sm-3">Окпо код</dt>
@@ -20,7 +24,11 @@
                 <dd class="col-sm-9">{{ firma.0.address_region }}, {{ firma.0.address_district }}, {{ firma.0.address_city }},
                     {{ firma.0.address_microdistrict }}, {{ firma.0.address_street }}, {{ firma.0.house_number }}, {{ firma.0.apartment_number }}</dd>
                 <dt class="col-sm-3">Телефон</dt>
-                <dd class="col-sm-9">{{ firma.0.phone }}</dd>
+                {% if firma.0.phone %}
+                    <dd class="col-sm-9">{{ firma.0.phone }}</dd>
+                {% else %}
+                    <dd class="col-sm-9">Отсутствует</dd>
+                {% endif %}
                 <dt class="col-sm-3">Электронная почта</dt>
                 <dd class="col-sm-9">{{ firma.0.email }}</dd>
                 <dt class="col-sm-3">Перерегистрация</dt>
@@ -49,21 +57,44 @@
                     <dd class="col-sm-9">{{ people.first_name }}</dd>
                     <dt class="col-sm-3">Отчество</dt>
                     <dd class="col-sm-9">{{ people.middle_name }}</dd>
-                    <dt class="col-sm-3">Адрес</dt>
-                    <dd class="col-sm-9">{{ people.address }}</dd>
+{#                    <dt class="col-sm-3">Адрес</dt>#}
+{#                    <dd class="col-sm-9">{{ people.address }}</dd>#}
                     <dt class="col-sm-3">УИК</dt>
                     <dd class="col-sm-9">{{ people.uik }}</dd>
                     <dt class="col-sm-3">ТИК</dt>
                     <dd class="col-sm-9">{{ people.tik }}</dd>
+                    <hr>
                 {% endfor %}
             </dl>
         </div>
     </div>
+{#    <div class="card tizme">#}
+{#        <h5 class="card-header text-center">Данные по базе Открытый бюджет</h5>#}
+{#        <div class="card-body">#}
+{#            <dl class="row">#}
+{#                {% for budget in budget %}#}
+{#                    <dt class="col-sm-3">ИНН</dt>#}
+{#                    <dd class="col-sm-9">{{ budget.inn }}</dd>#}
+{#                    <dt class="col-sm-3">Фамилие</dt>#}
+{#                    <dd class="col-sm-9">{{ people.last_name }}</dd>#}
+{#                    <dt class="col-sm-3">Имя</dt>#}
+{#                    <dd class="col-sm-9">{{ people.first_name }}</dd>#}
+{#                    <dt class="col-sm-3">Отчество</dt>#}
+{#                    <dd class="col-sm-9">{{ people.middle_name }}</dd>#}
+{#                    <dt class="col-sm-3">Адрес</dt>#}
+{#                    <dd class="col-sm-9">{{ people.address }}</dd>#}
+{#                    <dt class="col-sm-3">УИК</dt>#}
+{#                    <dd class="col-sm-9">{{ people.uik }}</dd>#}
+{#                    <dt class="col-sm-3">ТИК</dt>#}
+{#                    <dd class="col-sm-9">{{ people.tik }}</dd>#}
+{#                {% endfor %}#}
+{#                {% include 'partial/pagination.html' %}#}
+{#            </dl>#}
+{#        </div>#}
+{#    </div>#}
     <div class="fdsf text-center">
         <button class="btn btn-dark" type="button"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}" class="link-light">Поиск связей</a></button>
     </div>
-    {% if is_paginated %}
-        {% include 'partial/pagination.html' %}
-    {% endif %}
+{#    {% include 'partial/pagination.html' %}#}
 {#    <span class="asd"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}">Второй уровен</a></span>#}
 {% endblock %}
