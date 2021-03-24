@@ -1,9 +1,30 @@
 body{
-    background-color: #3CB371;
+    background-color: whitesmoke;
 }
 .navbar{
     background-color: #5F9EA0;
 }
+
+.main-block{
+	margin-top: 30px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.main-block h2{
+	font-size: 30px;
+	color: #000;
+	font-weight: normal;
+}
+.main-block p{
+	font-size: 16px;
+	color: #404040;
+	line-height: 26px;
+	padding-bottom: 10%;
+	/*background: url(../images/bg-bricks.jpg);*/
+	/*background-repeat: no-repeat;*/
+	/*background-position: left bottom;*/
+}
+
 a {
     text-decoration: none;
 }
@@ -58,4 +79,8 @@ a {
 .card{
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.tizmetext{
+    text-align: center;
 }

@@ -1,6 +1,7 @@
 import csv
 from itertools import islice
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
@@ -10,7 +11,7 @@ from django.views.generic import DetailView, ListView
 from webapp.models import Firma, People, OpenBudget
 
 
-class SearchView(ListView):
+class SearchView(LoginRequiredMixin, ListView):
     model = Firma
     template_name = 'index.html'
 
@@ -32,7 +33,7 @@ class SearchView(ListView):
             return context
 
 
-class FirmaView(ListView):
+class FirmaView(LoginRequiredMixin, ListView):
     model = Firma
     template_name = 'detail.html'
     paginate_by = 5
@@ -71,7 +72,7 @@ class FirmaView(ListView):
         return render(request=request, template_name=self.template_name, context=context)
 
 
-class FirmaSecondView(ListView):
+class FirmaSecondView(LoginRequiredMixin, ListView):
     template_name = 'detail_2.html'
     model = Firma
     paginate_by = 5
@@ -92,22 +93,23 @@ class FirmaSecondView(ListView):
             founders.append(fo)
         print(founders,'за циклом')
         founders = founders
-
-
-
         print(len(founders))
-        if founders[0] != '':
-            for founder in founders:
-                firma_objects_2 = Firma.objects.filter(Q(founders__icontains=founder) | Q(director__icontains=founder))
-                fff = {
-                    'name': founder,
-                    'firmas': firma_objects_2
-                }
-                f.append(fff)
-
-        else:
+        if founders.__contains__('Замените на физическое лицо 1'):
             pass
+        else:
+            if founders[0] != '':
+                for founder in founders:
+                    firma_objects_2 = Firma.objects.filter(Q(founders__icontains=founder) | Q(director__icontains=founder))
+                    fff = {
+                        'name': founder,
+                        'firmas': firma_objects_2
+                    }
+                    f.append(fff)
+
+            else:
+                pass
             print('none')
+
         print(f)
         print(len(firma.director))
         print(firma.director ,'1111111')
