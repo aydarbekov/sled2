@@ -2,8 +2,9 @@ import csv
 from itertools import islice
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views import View
 # import bulk_update_or_create
 from django.views.generic import DetailView, ListView
@@ -20,17 +21,31 @@ class SearchView(LoginRequiredMixin, ListView):
         search_str_1 = self.request.GET.get('search_str')
         if search_str_1:
             search_str = " ".join(search_str_1.split())
-
-
             if search_str:
                 firma_objects = Firma.objects.filter((Q(full_name_ru__icontains=search_str) | Q(full_name_kg__icontains=search_str)
                                                       | Q(director__icontains=search_str) | Q(founders__icontains=search_str) |
-                                                      Q(inn__icontains=search_str)))
-                # print(firma_objects)
-                context['firmas'] = firma_objects
+                                                      Q(inn__icontains=search_str))).order_by('full_name_kg')
+
+                print(firma_objects)
+                paginator = Paginator(firma_objects, 5)
+                page = self.request.GET.get('page', 1)
+                # firma_objects = paginator.get_page(page)
+                context['firmas'] = paginator.get_page(page)
                 context['search_str'] = search_str
 
             return context
+
+          # return super().get_context_data(**kwargs)
+
+    # def listing(self, *args, **kwargs):
+    #     firma_objects = self.kwargs.get('firmas')
+    #     print(firma_objects)
+    #     print('trata')
+    #     paginator = Paginator(firma_objects, 2)  # Show 25 contacts per page
+    #
+    #     page = self.request.GET.get('search_str')
+    #     firmas = paginator.get_page(page)
+    #     return render(self.request, 'index.html', {'firmas': firmas})
 
 
 class FirmaView(LoginRequiredMixin, ListView):

@@ -7,7 +7,7 @@
 {% block content %}
     {% for firma_2 in firmas_2 %}
         <div class="card">
-            <h5 class="card-header">Поиск по учредителю {{ firma_2.name }}</h5>
+            <h7 class="card-header">Поиск по учредителю {{ firma_2.name }}</h7>
             {% if firma_2.firmas %}
                 <div class="card-body">
                     {% for f in firma_2.firmas %}
@@ -30,7 +30,7 @@
         </div>
     {% endfor %}
     <div class="card">
-        <h5 class="card-header">Поиск по директору {{ firma.0.director }}</h5>
+        <h7 class="card-header">Поиск по дирeктору {{ firma.0.director }}</h7>
         <div class="card-body">
             <dl class="row">
                 {% for firma_3 in firmas_3 %}
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="card">
-        <h5 class="card-header">Поиск по адресу фирмы {{ firma.0.full_name_kg }}</h5>
+        <h7 class="card-header">Поиск по адресу фирмы {{ firma.0.full_name_kg }}</h7>
         <div class="card-body">
             <dl class="row">
                 {% for address in addresses %}

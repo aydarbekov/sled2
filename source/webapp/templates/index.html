@@ -26,25 +26,46 @@
             </div>
         </form>
     {% endif %}
-    {% if firmas %}
-        {% for firma in firmas %}
-            <div class="card det">
-                <h5 class="card-header">{{ firma.full_name_kg }}</h5>
-                <div class="card-body">
-                    <dl class="row">
-                        <dt class="col-sm-3">ИНН</dt>
-                        <dd class="col-sm-9">{{ firma.inn }}</dd>
-                        <dt class="col-sm-3">Директор</dt>
-                        <dd class="col-sm-9">{{ firma.director }}</dd>
-                    </dl>
-                    <div class="right">
-                        <a href="{% url "webapp:firma_detail" firma.pk %}" class="btn btn btn-dark">Подробнее</a>
+{#    {% if firmas %}#}
+{#        {% for firma in firmas %}#}
+{#            <div class="card det">#}
+{#                <h5 class="card-header">{{ firma.full_name_kg }}</h5>#}
+{#                <div class="card-body">#}
+{#                    <dl class="row">#}
+{#                        <dt class="col-sm-3">ИНН</dt>#}
+{#                        <dd class="col-sm-9">{{ firma.inn }}</dd>#}
+{#                        <dt class="col-sm-3">Директор</dt>#}
+{#                        <dd class="col-sm-9">{{ firma.director }}</dd>#}
+{#                    </dl>#}
+{#                    <div class="right">#}
+{#                        <a href="{% url "webapp:firma_detail" firma.pk %}" class="btn btn btn-dark">Подробнее</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#        {% include 'partial/pagination.html' %}#}
+{#    {% endif %}#}
+        {% if firmas %}
+            <div class="container card">
+                {% for firma in firmas %}
+                    <div class="row">
+                    {% if firma.short_name_kg %}
+                        <h7>{{ firma.short_name_kg }}</h7>
+                    {% else %}
+                        <h7>{{ firma.full_name_kg }}</h7>
+                    {% endif %}
+                        <div class="col-sm-3 gr">Директор</div>
+                        <div class="col-sm-9 s">{{ firma.director }}</div>
+                        <div class="col-sm-3 gr">ИНН</div>
+                        <div class="col-sm-9">{{ firma.inn }}</div>
                     </div>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-    {% if is_paginated %}
-        {% include 'partial/pagination.html' %}
-    {% endif %}
+                    <div class="float-right"><b><a class="more" href="{% url "webapp:firma_detail" firma.pk %}">подробнее</a></b></div>
+                    <hr>
+                 {% endfor %}
+             </div>
+            {% include 'partial/pagination.html' %}
+        {% endif %}
+{#    {% if is_paginated %}#}
+{#        {% include 'partial/pagination.html'%}#}
+{#    {% endif %}#}
 {% endblock %}

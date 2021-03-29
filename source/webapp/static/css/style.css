@@ -84,3 +84,64 @@ a {
 .tizmetext{
     text-align: center;
 }
+
+.pagination{
+    color: whitesmoke;
+}
+
+.page-link{
+    color: black;
+}
+
+.page-linkk{
+    color: black;
+    background-color: orange;
+}
+
+.page-link:active{
+    background-color: orange;
+}
+
+.page-item:active{
+    color: orange;
+    background-color: orange;
+}
+
+.page-item.active .page-link{
+    background-color: orange;
+    border: gray;
+}
+
+.more{
+    color: orange;
+    text-align: center;
+}
+
+.gr{
+    color: lightslategray;
+}
+
+.hr{
+    color: orange;
+}
+
+.hr_2{
+    height: 5px;
+}
+
+.disp{
+    display: block;
+}
+
+.col-sm-3{
+    color: lightslategray;
+}
+
+.detail{
+    background-color: white;
+}
+
+.det_tizme{
+    margin-top: 20px;
+    background-color: white;
+}

@@ -1,21 +1,24 @@
-<div class="pagination_file">
-    <span class="step-links">
-        <a href="?page=1">&laquo; To the begining</a>
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">Back</a>
-        {% else %}
-            <span class="page-disabled">Back</span>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Next</a>
-        {% else %}
-            <span class="page-disabled">Next</span>
-        {% endif %}
-        <a href="?page={{ page_obj.paginator.num_pages }}">To the end &raquo;</a>
-    </span>
-</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      {% if firmas.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ firmas.previous_page_number }}&search_str={{ search_str }}">Previous</a>
+        </li>
+      {% endif %}
+        {% for page in firmas.paginator.page_range %}
+            {% if firmas.number == page %}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">{{ page }}</span>
+                 </li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ page }}&search_str={{ search_str }}">{{ page }}</a></li>
+                <li class="page-item">
+            {% endif %}
+        {% endfor %}
+    {% if firmas.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ firmas.next_page_number }}&search_str={{ search_str }}">Next</a>
+        </li>
+    {% endif %}
+  </ul>
+</nav>
