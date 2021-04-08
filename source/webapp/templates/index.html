@@ -1,24 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Files{% endblock %}
 {% block menu %}
-{#    <a class="nav-link active" aria-current="page" href="{% url 'webapp:search' %}">Home</a>#}
+    {#    <a class="nav-link active" aria-current="page" href="{% url 'webapp:search' %}">Home</a>#}
 {% endblock %}
 
 {% block content %}
     {% if request.user.is_not_authenticated %}
-    <div class="main-block">
-		<div class="container">
-			<h2>SLED.POLITMER.KG</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae fuga dolorem atque eum distinctio, veritatis ipsa similique vitae laboriosam sint tenetur perferendis, delectus corrupti? Nesciunt voluptates porro nam possimus perferendis modi non, molestias cum, aliquam nihil illo voluptatibus. Debitis optio delectus, unde distinctio. Esse, omnis debitis impedit assumenda, possimus quos nostrum dolore, at itaque molestiae aliquid fuga mollitia id. Sint distinctio hic nam ad sequi? Sunt, reprehenderit facilis rem hic delectus vel saepe voluptas fugit quasi pariatur deleniti veritatis praesentium odio temporibus suscipit voluptate dolorem modi. Odit rerum veritatis quod!</p>
-		</div>
-	</div>
     {% endif %}
     {% if request.user.is_authenticated %}
         <h1 class="text-center"></h1>
         <form action="{% url 'webapp:search'  %}" method="get" autocomplete="off" >
             <div class="input-group">
                 {% if not search_str %}
-                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации">
+                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации" >
                 {% else %}
                     <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder={{ search_str }}>
                 {% endif %}
@@ -26,46 +20,42 @@
             </div>
         </form>
     {% endif %}
-{#    {% if firmas %}#}
-{#        {% for firma in firmas %}#}
-{#            <div class="card det">#}
-{#                <h5 class="card-header">{{ firma.full_name_kg }}</h5>#}
-{#                <div class="card-body">#}
-{#                    <dl class="row">#}
-{#                        <dt class="col-sm-3">ИНН</dt>#}
-{#                        <dd class="col-sm-9">{{ firma.inn }}</dd>#}
-{#                        <dt class="col-sm-3">Директор</dt>#}
-{#                        <dd class="col-sm-9">{{ firma.director }}</dd>#}
-{#                    </dl>#}
-{#                    <div class="right">#}
-{#                        <a href="{% url "webapp:firma_detail" firma.pk %}" class="btn btn btn-dark">Подробнее</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        {% include 'partial/pagination.html' %}#}
-{#    {% endif %}#}
-        {% if firmas %}
-            <div class="container card">
-                {% for firma in firmas %}
-                    <div class="row">
-                    {% if firma.short_name_kg %}
-                        <h7>{{ firma.short_name_kg }}</h7>
-                    {% else %}
-                        <h7>{{ firma.full_name_kg }}</h7>
-                    {% endif %}
-                        <div class="col-sm-3 gr">Директор</div>
-                        <div class="col-sm-9 s">{{ firma.director }}</div>
-                        <div class="col-sm-3 gr">ИНН</div>
-                        <div class="col-sm-9">{{ firma.inn }}</div>
-                    </div>
-                    <div class="float-right"><b><a class="more" href="{% url "webapp:firma_detail" firma.pk %}">подробнее</a></b></div>
-                    <hr>
-                 {% endfor %}
-             </div>
-            {% include 'partial/pagination.html' %}
-        {% endif %}
-{#    {% if is_paginated %}#}
-{#        {% include 'partial/pagination.html'%}#}
-{#    {% endif %}#}
+    <div class="main-block">
+        <h1 class="sled">SLED.POLITMER.KG</h1>
+        <span class="descr">Мы собрали все доступные базы данных со связями, чтобы создать простой и эффективный инструмент поиска для журналистов и активистов, занимающихся общественным контролем.</span>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="count_title">{{ firms }}</h2>
+                    <p class="count_description">данных по базе минюст</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="count_title">{{ peoples }}</h2>
+                    <p class="count_description">данных по базе тизме</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="count_title">{{ budgets }}</h2>
+                    <p class="count_description">данных по базе открытый бюджет</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="count_title">{{ tenders }}</h2>
+                    <p class="count_description">данных по базе тендеры</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

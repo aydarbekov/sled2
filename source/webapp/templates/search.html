@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Files{% endblock %}
+{% block menu %}
+    {#    <a class="nav-link active" aria-current="page" href="{% url 'webapp:search' %}">Home</a>#}
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_not_authenticated %}
+    {% endif %}
+    {% if request.user.is_authenticated %}
+        <h1 class="text-center"></h1>
+        <form action="{% url 'webapp:search'  %}" method="get" autocomplete="off" >
+            <div class="input-group">
+                {% if not search_str %}
+                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации">
+                {% else %}
+                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder={{ search_str }}>
+                {% endif %}
+                <button type="submit" class="btn btn btn-dark">Поиск</button>
+            </div>
+        </form>
+    {% endif %}
+    <div class="container card">
+        {% if firmas %}
+            {% for firma in firmas %}
+                <div class="row">
+                    {% if firma.short_name_kg %}
+                        <h7>{{ firma.short_name_kg }}</h7>
+                    {% else %}
+                        <h7>{{ firma.full_name_kg }}</h7>
+                    {% endif %}
+                    <div class="col-sm-3 gr">Директор</div>
+                    <div class="col-sm-9 s">{{ firma.director }}</div>
+                    <div class="col-sm-3 gr">ИНН</div>
+                    <div class="col-sm-9">{{ firma.inn }}</div>
+                </div>
+                <div class="float-right"><b><a class="more" href="{% url "webapp:firma_detail" firma.pk %}">подробнее</a></b></div>
+                <hr>
+            {% endfor %}
+            {% include 'partial/pagination.html' %}
+        {% elif not firmas %}
+            <div class="main-block">
+                <span class="descr">Данных по запросу <b class="result">{{ search_str }}</b> не обнаружено</span>
+            </div>
+        {% endif %}
+    </div>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html'%}
+    {% endif %}
+{% endblock %}

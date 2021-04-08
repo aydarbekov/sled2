@@ -1,8 +1,24 @@
 body{
-    background-color: whitesmoke;
+    background-color: white;
+    font-family:'Source Sans Pro', sans-serif;
+    /*font-family: "Open Sans", sans-serif;*/
+  /*font-size: 14px;*/
+  /*line-height: 20px;*/
 }
 .navbar{
-    background-color: #5F9EA0;
+    background-color: white;
+
+}
+.navbar-brand{
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+.account{
+    color: black;
+}
+
+.account:hover{
+    color: orange;
 }
 
 .main-block{
@@ -14,12 +30,14 @@ body{
 	font-size: 30px;
 	color: #000;
 	font-weight: normal;
+    margin-bottom: 20px;
 }
 .main-block p{
 	font-size: 16px;
 	color: #404040;
 	line-height: 26px;
 	padding-bottom: 10%;
+    max-width: 50%;
 	/*background: url(../images/bg-bricks.jpg);*/
 	/*background-repeat: no-repeat;*/
 	/*background-position: left bottom;*/
@@ -79,6 +97,7 @@ a {
 .card{
     margin-top: 30px;
     margin-bottom: 30px;
+    border: none;
 }
 
 .tizmetext{
@@ -144,4 +163,61 @@ a {
 .det_tizme{
     margin-top: 20px;
     background-color: white;
+}
+
+.cartin{
+    /*background: url("../img/sign-out-alt-solid.svg")center no-repeat;*/
+    color: #D5A867;
+}
+
+.sled{
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 300%;
+    margin-bottom: 30px;
+
+}
+
+.logo{
+    font-family: 'Fjalla One', sans-serif;;
+    font-size: xx-large;
+    color: black;
+}
+
+.logo:hover{
+    color: #D5A867;
+}
+
+.logo_foot{
+    font-family: 'Fjalla One', sans-serif;;
+    font-size: xx-large;
+    color: gray;
+}
+
+.descr{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 24px;
+    color: #1F1F1F;
+    text-align: right;
+    padding-right: 50%;
+    width: 3000px;
+}
+
+.count_title{
+    color: #D5A867;
+}
+
+.count_description{
+    color: black;
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.input-group{
+    width: 50%;
+}
+
+.result{
+    color: #D5A867;
 }
