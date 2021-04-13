@@ -77,16 +77,16 @@ class People(models.Model):
 # Postavshiki s gos zakupok
 class Supliers(models.Model):
     inn = models.CharField(max_length=220, null=True, blank=True, verbose_name='ИНН организации')
-    name = models.CharField(max_length=220, null=True, blank=True, verbose_name='Наименование организации')
-    form = models.CharField(max_length=220, null=True, blank=True, verbose_name='Форма собственности')
-    city = models.CharField(max_length=220, null=True, blank=True, verbose_name='Город')
-    address = models.CharField(max_length=220, null=True, blank=True, verbose_name='Адрес')
+    name = models.CharField(max_length=500, null=True, blank=True, verbose_name='Наименование организации')
+    form = models.CharField(max_length=500, null=True, blank=True, verbose_name='Форма собственности')
+    city = models.CharField(max_length=500, null=True, blank=True, verbose_name='Город')
+    address = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Адрес')
     phone = models.CharField(max_length=220, null=True, blank=True, verbose_name='Телефон')
-    bank = models.CharField(max_length=220, null=True, blank=True, verbose_name='Банк')
-    checking_account = models.CharField(max_length=220, null=True, blank=True, verbose_name='Расчетный счет')
+    bank = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Банк')
+    checking_account = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Расчетный счет')
     bik = models.CharField(max_length=220, null=True, blank=True, verbose_name='БИК')
     status = models.CharField(max_length=220, null=True, blank=True, verbose_name='Статус')
-    reg_date = models.CharField(max_length=220, null=True, blank=True, verbose_name='Дата регистрации')
+    reg_date = models.CharField(max_length=500, null=True, blank=True, verbose_name='Дата регистрации')
 
     def __str__(self):
         return self.name

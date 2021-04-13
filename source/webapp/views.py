@@ -23,7 +23,7 @@ class IndexView(LoginRequiredMixin, ListView):
         context['firms'] = Firma.objects.count()
         context['peoples'] = People.objects.count()
         context['budgets'] = OpenBudget.objects.count()
-        context['tenders'] = Tender.objects.count()
+        context['supliers'] = Supliers.objects.count()
 
         return context
 
@@ -81,30 +81,49 @@ class FirmaView(LoginRequiredMixin, ListView):
 
         inn = firma.inn
         print(inn)
+        # inn_objects = []
+        # # if inn is not None:
+        # inn_object = OpenBudget.objects.filter(Q(inn__icontains=inn))
+        # # inn_objects.append(inn_object)
+        # print(inn_objects, 'INN')
+        # print(inn, 'BYYYYY')
+        # paginator = Paginator(inn_objects, 5)
+        # page = self.request.GET.get('page', 1)
+
+        supliers_objects = Supliers.objects.filter(Q(inn__icontains=inn))
+
+        context['supliers'] = supliers_objects
+        # context['budget'] = inn_object
+        context['firma'] = firma_inn
+        print(context['firma'])
+
+        return render(request=request, template_name=self.template_name, context=context)
+
+
+class BudgetView(LoginRequiredMixin, ListView):
+    template_name = 'open_budget.html'
+    model = Firma
+    paginate_by = 5
+    paginate_orphans = 0
+
+    def get(self, request, *args, **kwargs):
+        firma_inn = []
+        context = {}
+        firma = Firma.objects.get(pk=kwargs['pk'])
+        print(firma, 'ddddd')
+
+        inn = firma.inn
+        print(inn)
         inn_objects = []
-        if inn is not None:
-            inn_object = OpenBudget.objects.filter(Q(inn__icontains=inn))
-            inn_objects.append(inn_object)
-            print(inn_objects, 'INN')
-            print(inn, 'BYYYYY')
+        # if inn is not None:
+        inn_object = OpenBudget.objects.filter(Q(inn__icontains=inn))
+        inn_objects.append(inn_object)
+        print(inn_objects, 'INN')
+        print(inn, 'BYYYYY')
         paginator = Paginator(inn_objects, 5)
         page = self.request.GET.get('page', 1)
 
-        # org_name_ru = firma.full_name_kg
-        # org_name_kg = firma.full_name_ru
-        # org_short_kg = firma.short_name_ru
-        # org_short_ru = firma.short_name_kg
-        # print(org_short_ru, org_short_kg)
-        # tender_objs = Tender.objects.filter(Q(org_name__icontains=org_short_kg) | Q(org_name__icontains=org_short_ru))
-        # print(tender_objs, 'tenders')
-
-        # supliers_objects = Supliers.objects.filter(Q(inn__icontains=inn))
-
-        # context['supliers'] = supliers_objects
-        # context['tenders'] = tender_objs
         context['budget'] = paginator.get_page(page)
-        context['firma'] = firma_inn
-        print(context['firma'])
 
         return render(request=request, template_name=self.template_name, context=context)
 

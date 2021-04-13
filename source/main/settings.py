@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z8o3))zm=f5*q&=vfl=gv)lm_m2p=t%%bmr&we+fprh=3@xwcf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
+DEBUG =False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['Sled.politmer.kg', '37.218.243.22', 'localhost']
 
 
 # Application definition

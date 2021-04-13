@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block menu %}
+    {#    <a class="nav-link" href="{% url 'webapp:search' %}">Home</a>#}
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ firma.0.full_name_ru }}</a>
+{% endblock %}
+{% block content %}
+    <div class="container detail">
+            <dl class="row">
+            <h7 class="text-center">Данные по базе минюст</h7>
+                    {% for budget in budget %}
+                        {% for b in budget %}
+                            <div class="col-sm-3">ИНН</div>
+                            <dd class="col-sm-9">{{ b.inn}}</dd>
+                            <div class="col-sm-3">Type</div>
+                            <dd class="col-sm-9">{{ b.type}}</dd>
+                            <div class="col-sm-3">payer</div>
+                            <dd class="col-sm-9">{{ b.payer}}</dd>
+                            <hr>
+                        {% endfor %}
+                    {% endfor %}
+            {% include 'partial/budget_pagination.html' %}
+            </dl>
+        </div>
+    </div>
+{% endblock %}
