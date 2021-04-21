@@ -16,16 +16,16 @@ class IndexView(LoginRequiredMixin, ListView):
     model = Firma
     template_name = 'index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        firms = Firma.objects.count()
-        print(firms)
-        context['firms'] = Firma.objects.count()
-        context['peoples'] = People.objects.count()
-        context['budgets'] = OpenBudget.objects.count()
-        context['supliers'] = Supliers.objects.count()
-
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     firms = Firma.objects.count()
+    #     print(firms)
+    #     context['firms'] = Firma.objects.count()
+    #     context['peoples'] = People.objects.count()
+    #     context['budgets'] = OpenBudget.objects.count()
+    #     context['supliers'] = Supliers.objects.count()
+    #
+    #     return context
 
 
 class SearchView(LoginRequiredMixin, ListView):
@@ -63,39 +63,30 @@ class FirmaView(LoginRequiredMixin, ListView):
         context = {}
         firma = Firma.objects.get(pk=kwargs['pk'])
         firma_inn.append(firma)
-        print(firma, 'ddddd')
-
-        print(len(firma.director.upper().split()))
+        # print(firma, 'ddddd')
+        #
+        # print(len(firma.director.upper().split()))
         director = firma.director.upper().split()
-        print(director[0])
-        print(director[1])
+        # print(director[0])
+        # print(director[1])
         if len(director) == 3:
             director_objects = People.objects.filter((Q(last_name__icontains=director[0]) & Q(first_name__icontains=director[1]) & Q(middle_name__icontains=director[2])))
         else:
             director_objects = People.objects.filter((Q(last_name__icontains=director[0]) & Q(
                 first_name__icontains=director[1])))
         firma_inn.append(director_objects)
-        print(director_objects,'dfgfdg')
-        for obj in director_objects:
-            print(obj.first_name)
+        # print(director_objects,'dfgfdg')
+        # for obj in director_objects:
+        #     print(obj.first_name)
 
         inn = firma.inn
-        print(inn)
-        # inn_objects = []
-        # # if inn is not None:
-        # inn_object = OpenBudget.objects.filter(Q(inn__icontains=inn))
-        # # inn_objects.append(inn_object)
-        # print(inn_objects, 'INN')
-        # print(inn, 'BYYYYY')
-        # paginator = Paginator(inn_objects, 5)
-        # page = self.request.GET.get('page', 1)
-
+        # print(inn)
         supliers_objects = Supliers.objects.filter(Q(inn__icontains=inn))
 
         context['supliers'] = supliers_objects
         # context['budget'] = inn_object
         context['firma'] = firma_inn
-        print(context['firma'])
+        # print(context['firma'])
 
         return render(request=request, template_name=self.template_name, context=context)
 
@@ -103,27 +94,31 @@ class FirmaView(LoginRequiredMixin, ListView):
 class BudgetView(LoginRequiredMixin, ListView):
     template_name = 'open_budget.html'
     model = Firma
-    paginate_by = 5
-    paginate_orphans = 0
 
     def get(self, request, *args, **kwargs):
         firma_inn = []
         context = {}
         firma = Firma.objects.get(pk=kwargs['pk'])
-        print(firma, 'ddddd')
+        # print(firma, 'ddddd')
 
         inn = firma.inn
-        print(inn)
-        inn_objects = []
+        # print(inn)
+        # inn_objects = []
         # if inn is not None:
         inn_object = OpenBudget.objects.filter(Q(inn__icontains=inn))
-        inn_objects.append(inn_object)
-        print(inn_objects, 'INN')
-        print(inn, 'BYYYYY')
-        paginator = Paginator(inn_objects, 5)
+        # inn_objects.append(inn_object)
+        print(inn_object, 'INN')
+        budget_objects = []
+        for bs in inn_object:
+            # for b in bs:
+                # print(b)
+            budget_objects.append(bs)
+        # print(inn, 'BYYYYY')
+        paginator = Paginator(budget_objects, 10)
         page = self.request.GET.get('page', 1)
 
         context['budget'] = paginator.get_page(page)
+        context['firma'] = firma
 
         return render(request=request, template_name=self.template_name, context=context)
 
@@ -139,17 +134,17 @@ class FirmaSecondView(LoginRequiredMixin, ListView):
         firma = Firma.objects.get(pk=kwargs['pk'])
 
         f = []
-        print(firma.founders)
+        # print(firma.founders)
         old_founders = firma.founders.strip('[]').split(',')
-        print(old_founders,'foundres')
+        # print(old_founders,'foundres')
         founders = []
         for founder in old_founders:
             fo = founder.strip("' ")
-            print(founder, 'цикл')
+            # print(founder, 'цикл')
             founders.append(fo)
-        print(founders,'за циклом')
+        # print(founders,'за циклом')
         founders = founders
-        print(len(founders))
+        # print(len(founders))
         if founders.__contains__('Замените на физическое лицо 1'):
             pass
         else:
@@ -166,23 +161,21 @@ class FirmaSecondView(LoginRequiredMixin, ListView):
                 pass
             print('none')
 
-        print(f)
-        print(len(firma.director))
-        print(firma.director ,'1111111')
+        # print(f)
+        # print(len(firma.director))
+        # print(firma.director ,'1111111')
         context['fir'] = firma.director
         if len(firma.director) != '':
             director_objects_2 = Firma.objects.filter(Q(founders__icontains=firma.director) | Q(director__icontains=firma.director))
             context['firmas_3'] = director_objects_2
-
-
-        print(firma.address_street)
+        # print(firma.address_street)
         if firma.address_street != None and firma.address_street != '':
             if '.' in firma.address_street:
                 street = firma.address_street.split('.')[1]
             else:
                 street = firma.address_street
             addresses = Firma.objects.filter(Q(address_street__icontains=street) & Q(house_number__icontains=firma.house_number))
-            print(addresses)
+            # print(addresses)
             context['addresses'] = addresses
         else:
             pass

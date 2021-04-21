@@ -1,128 +1,142 @@
 {% extends 'base.html' %}
 {% block menu %}
-    {#    <a class="nav-link" href="{% url 'webapp:search' %}">Home</a>#}
+{#        <a class="nav-link" href="{% url 'webapp:search' %}">home</a>#}
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ firma.0.full_name_ru }}</a>
+    <a class="nav-link budg" href="{% url "webapp:budget" firma.0.pk %}">Данные по базе открытый бюджет</a>
 {% endblock %}
 {% block content %}
     <div class="container detail">
         <div class="row">
-            <h7 class="text-center">Данные по базе минюст</h7>
-            <div class="col-sm-3">Название организации</div>
+            <h7 class="text-center">База минюст</h7>
+            <div class="col-sm-3">название организации</div>
             {% if firma.0.full_name_ru %}
                 <dd class="col-sm-9">{{ firma.0.full_name_ru }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Регистрационный номер</div>
+            <div class="col-sm-3">регистрационный номер</div>
             {% if firma.0.registration_number %}
                 <dd class="col-sm-9">{{ firma.0.registration_number }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Окпо код</div>
+            <div class="col-sm-3">окпо код</div>
             {% if firma.0.okpo_cod %}
                 <dd class="col-sm-9">{{ firma.0.okpo_cod }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">ИНН</div>
+            <div class="col-sm-3">инн</div>
             {% if firma.0.inn %}
                 <dd class="col-sm-9">{{ firma.0.inn }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Адрес</div>
+            <div class="col-sm-3">адрес</div>
             <dd class="col-sm-9">{{ firma.0.address_region }}, {{ firma.0.address_district }}, {{ firma.0.address_city }},
                 {{ firma.0.address_microdistrict }}, {{ firma.0.address_street }}, {% if firma.0.house_number %}{{ firma.0.house_number }},{% else %}{{ firma.0.apartment_number }{% endif %}</dd>
-            <div class="col-sm-3">Телефон</div>
+            <div class="col-sm-3">телефон</div>
             {% if firma.0.phone %}
                 <dd class="col-sm-9">{{ firma.0.phone }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Электронная почта</div>
+            <div class="col-sm-3">электронная почта</div>
             {% if firma.0.email  %}
                 <dd class="col-sm-9">{{ firma.0.email }}</dd>
             {% else%}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Перерегистрация</div>
+            <div class="col-sm-3">перерегистрация</div>
             {% if firma.0.reg_or_rereg %}
                 <dd class="col-sm-9">{{ firma.0.reg_or_rereg }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Директор</div>
+            <div class="col-sm-3">директор</div>
             {% if firma.0.director %}
                 <dd class="col-sm-9">{{ firma.0.director }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Основной вид деятельности</div>
+            <div class="col-sm-3">основной вид деятельности</div>
             {% if firma.0.main_activity %}
                 <dd class="col-sm-9">{{ firma.0.main_activity }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Код экономической деятельности</div>
+            <div class="col-sm-3">код экономической деятельности</div>
             {% if firma.0.economic_activity_code %}
                 <dd class="col-sm-9">{{ firma.0.economic_activity_code }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
-            <div class="col-sm-3">Учредители</div>
+            <div class="col-sm-3">учредители</div>
             {% if firma.0.founders %}
                 <dd class="col-sm-9">{{ firma.0.founders }}</dd>
             {% else %}
-                <dd class="col-sm-9">Отсутствует</dd>
+                <dd class="col-sm-9">отсутствует</dd>
             {% endif %}
         </div>
     </div>
     <div class="container det_tizme">
         <div class="row">
-            <h7 class="text-center">Данные по базе Тизме</h7>
+            <h7 class="text-center">База тизме</h7>
             {% if firma.1 %}
                 {% for people in firma.1 %}
-                    <div class="col-sm-3">ИНН</div>
+                    <div class="col-sm-3">инн</div>
                     <dd class="col-sm-9">{{ people.inn.capitalize }}</dd>
-                    <div class="col-sm-3">Фамилие</div>
+                    <div class="col-sm-3">фамилие</div>
                     <dd class="col-sm-9">{{ people.last_name }}</dd>
-                    <div class="col-sm-3">Имя</div>
+                    <div class="col-sm-3">имя</div>
                     <dd class="col-sm-9">{{ people.first_name }}</dd>
-                    <div class="col-sm-3">Отчество</div>
+                    <div class="col-sm-3">отчество</div>
                     <dd class="col-sm-9">{{ people.middle_name }}</dd>
-                    {#                    <div class="col-sm-3">Адрес</div>#}
+                    {#                    <div class="col-sm-3">адрес</div>#}
                     {#                    <dd class="col-sm-9">{{ people.address }}</dd>#}
-                    <div class="col-sm-3">УИК</div>
+                    <div class="col-sm-3">уик</div>
                     <dd class="col-sm-9">{{ people.uik }}</dd>
-                    <div class="col-sm-3">ТИК</div>
+                    <div class="col-sm-3">тик</div>
                     <dd class="col-sm-9">{{ people.tik }}</dd>
                     <hr>
                 {% endfor %}
             {% else %}
-                <p class="tizmetext">Данные отсутствуют</p>
+                <p class="tizmetext">данные отсутствуют</p>
             {% endif %}
         </div>
     </div>
         <div class="card tizme">
                 <dl class="row">
-                 <h7 class="text-center">Данные по базе Поставщики</h7>
+                 <h7 class="text-center">База поставщики</h7>
                     {% for suplier in supliers %}
-                        <div class="col-sm-3">Inn</div>
+                        <div class="col-sm-3">инн</div>
                         <dd class="col-sm-9">{{ suplier.inn }}</dd>
-                        <div class="col-sm-3">Название организации</div>
+                        <div class="col-sm-3">название организации</div>
                         <dd class="col-sm-9">{{ suplier.name }}</dd>
+                        <div class="col-sm-3">форма собственности</div>
+                        <dd class="col-sm-9">{{ suplier.form }}</dd>
+                        <div class="col-sm-3">город</div>
+                        <dd class="col-sm-9">{{ suplier.city }}</dd>
+                        <div class="col-sm-3">адрем</div>
+                        <dd class="col-sm-9">{{ suplier.address }}</dd>
+                        <div class="col-sm-3">телефон</div>
+                        <dd class="col-sm-9">{{ suplier.phone }}</dd>
+                        <div class="col-sm-3">банк</div>
+                        <dd class="col-sm-9">{{ suplier.bank }}</dd>
+                        <div class="col-sm-3">расчетный счёт</div>
+                        <dd class="col-sm-9">{{ suplier.checking_account }}</dd>
+                        <div class="col-sm-3">бик</div>
+                        <dd class="col-sm-9">{{ suplier.bik }}</dd>
+                        <div class="col-sm-3">статус</div>
+                        <dd class="col-sm-9">{{ suplier.status }}</dd>
+                        <div class="col-sm-3">дата регистрации</div>
+                        <dd class="col-sm-9">{{ suplier.reg_date }}</dd>
                     {% endfor %}
                     {% include 'partial/pagination.html' %}
                 </dl>
             </div>
         </div>
     <div class="fdsf text-center">
-        <a href="{% url "webapp:budget" firma.0.pk%}" class="link-dark">Данные по базе Открытый бюджет</a>
+        <button class="btn btn-dark" type="button"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}" class="link-light">поиск связей</a></button>
     </div>
-    <div class="fdsf text-center">
-        <button class="btn btn-dark" type="button"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}" class="link-light">Поиск связей</a></button>
-    </div>
-    {#    {% include 'partial/pagination.html' %}#}
-    {#    <span class="asd"><a href="{% url "webapp:firma_detail_2" firma.0.pk %}">Второй уровен</a></span>#}
 {% endblock %}

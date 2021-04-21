@@ -1,22 +1,17 @@
-<div class="pagination_art">
-    <span class="step-links">
-        <a href="?page=1">&laquo; В начало</a>
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
-        {% else %}
-            <span class="page-disabled">Назад</span>
-        {% endif %}
-
-        <span class="current">
-            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Далее</a>
-        {% else %}
-            <span class="page-disabled">Далее</span>
-        {% endif %}
-        <a href="?page={{ page_obj.paginator.num_pages }}">В конец &raquo;</a>
-    </span>
-</div>
-
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      {% if budget.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ budget.previous_page_number }}">Previous</a>
+        </li>
+      {% endif %}
+    <li class="page-item">
+        <p class="page-link">Страница {{ budget.number }} из {{ budget.paginator.num_pages }}</p>
+    </li>
+    {% if budget.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ budget.next_page_number }}">Next</a>
+        </li>
+    {% endif %}
+  </ul>
+</nav>

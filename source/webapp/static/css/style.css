@@ -158,6 +158,7 @@ a {
 
 .detail{
     background-color: white;
+    font-family:'Source Sans Pro', sans-serif;
 }
 
 .det_tizme{
@@ -219,5 +220,17 @@ a {
 }
 
 .result{
+    color: #D5A867;
+}
+
+.budg{
+    color: #D5A867;
+}
+
+.budg:hover{
+    color: black;
+}
+
+.nav-link{
     color: #D5A867;
 }

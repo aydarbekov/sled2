@@ -1,22 +1,45 @@
 {% extends 'base.html' %}
 {% block menu %}
-    {#    <a class="nav-link" href="{% url 'webapp:search' %}">Home</a>#}
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ firma.0.full_name_ru }}</a>
+    <a class="nav-link" href="{% url "webapp:firma_detail" firma.pk %}">{{ firma.full_name_ru }}</a>
 {% endblock %}
 {% block content %}
+{#    <div class="container detail">#}
+{#            <dl class="row">#}
+{#            <h7 class="text-center">Данные по базе минюст</h7>#}
+{#                    {% for budget in budget %}#}
+{#                        {% for b in budget %}#}
+{#                            <div class="col-sm-3">ИНН</div>#}
+{#                            <dd class="col-sm-9">{{ b.inn}}</dd>#}
+{#                            <div class="col-sm-3">Type</div>#}
+{#                            <dd class="col-sm-9">{{ b.type}}</dd>#}
+{#                            <div class="col-sm-3">payer</div>#}
+{#                            <dd class="col-sm-9">{{ b.payer}}</dd>#}
+{#                            <hr>#}
+{#                        {% endfor %}#}
+{#                    {% endfor %}#}
+{#            {% include 'partial/budget_pagination.html' %}#}
+{#            </dl>#}
+{#        </div>#}
+{#    </div>#}
     <div class="container detail">
             <dl class="row">
             <h7 class="text-center">Данные по базе минюст</h7>
-                    {% for budget in budget %}
-                        {% for b in budget %}
+                    {% for b in budget %}
                             <div class="col-sm-3">ИНН</div>
                             <dd class="col-sm-9">{{ b.inn}}</dd>
-                            <div class="col-sm-3">Type</div>
+                            <div class="col-sm-3">Тип</div>
                             <dd class="col-sm-9">{{ b.type}}</dd>
-                            <div class="col-sm-3">payer</div>
+                            <div class="col-sm-3">Номер документа</div>
+                            <dd class="col-sm-9">{{ b.docs_number}}</dd>
+                            <div class="col-sm-3">Период</div>
+                            <dd class="col-sm-9">{{ b.period}}</dd>
+                            <div class="col-sm-3">Плательщик</div>
                             <dd class="col-sm-9">{{ b.payer}}</dd>
+                            <div class="col-sm-3">Назначение платежа</div>
+                            <dd class="col-sm-9">{{ b.purpose_of_payment}}</dd>
+                            <div class="col-sm-3">Сумма</div>
+                            <dd class="col-sm-9">{{ b.amount}}</dd>
                             <hr>
-                        {% endfor %}
                     {% endfor %}
             {% include 'partial/budget_pagination.html' %}
             </dl>
