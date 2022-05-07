@@ -1,7 +1,7 @@
 from django.urls import path
 
 # from webapp.views import MinjustView, PeopleView
-from webapp.views import SearchView, FirmaView, FirmaSecondView, IndexView, BudgetView
+from webapp.views import SearchView, FirmaView, FirmaSecondView, IndexView, BudgetView, TenderView, SupplieredView
 
 app_name = 'webapp'
 
@@ -13,4 +13,6 @@ urlpatterns = [
     path('firma/<int:pk>/', FirmaView.as_view(), name='firma_detail'),
     path('firma/<int:pk>/budget/', BudgetView.as_view(), name='budget'),
     path('firma_2/<int:pk>/', FirmaSecondView.as_view(), name='firma_detail_2'),
+    path("firma/<int:pk>/tenders/<str:firm_name>/", TenderView.as_view(), name="tender"),
+    path("firma/<int:pk>/tenders_suppliered/<str:firm_name>/", SupplieredView.as_view(), name="tender_suppliered",),
 ]

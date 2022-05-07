@@ -7,19 +7,17 @@
 {% block content %}
     {% if request.user.is_not_authenticated %}
     {% endif %}
-    {% if request.user.is_authenticated %}
-        <h1 class="text-center"></h1>
-        <form action="{% url 'webapp:search'  %}" method="get" autocomplete="off" >
-            <div class="input-group">
-                {% if not search_str %}
-                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации" >
-                {% else %}
-                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder={{ search_str }}>
-                {% endif %}
-                <button type="submit" class="btn btn btn-dark">Поиск</button>
-            </div>
-        </form>
-    {% endif %}
+    <h1 class="text-center"></h1>
+    <form action="{% url 'webapp:search'  %}" method="get" autocomplete="off" >
+        <div class="input-group">
+            {% if not search_str %}
+                <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации" >
+            {% else %}
+                <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder={{ search_str }}>
+            {% endif %}
+            <button type="submit" class="btn btn btn-dark">Поиск</button>
+        </div>
+    </form>
     <div class="main-block">
         <h1 class="sled">SLED.POLITMER.KG</h1>
         <span class="descr">Мы собрали все доступные базы данных со связями, чтобы создать простой и эффективный инструмент поиска для журналистов и активистов, занимающихся общественным контролем.</span>

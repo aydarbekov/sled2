@@ -165,3 +165,180 @@ class Winner(models.Model):
 
     def __str__(self):
         return f'{self.tender_num} / {self.winner_name}'
+
+
+class WinnerDetailed(models.Model):
+    tender_num = models.CharField(max_length=220, null=True, blank=True, verbose_name="Номер тендера")
+    zak_org = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Закупающая организация")
+    start = models.CharField(max_length=220, null=True, blank=True, verbose_name="Дата начала")
+    finish = models.CharField(max_length=220, null=True, blank=True, verbose_name="Дата конца")
+    tender_name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название тендера")
+    tender_summ = models.CharField(max_length=220, null=True, blank=True, verbose_name="Сумма тендера")
+    lots_number = models.CharField(max_length=220, null=True, blank=True, verbose_name="Номер лота")
+    lots_name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название лота")
+    winner_name = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Название победителя")
+    winner_place = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Занятое место")
+    winner_summ = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Предложенная сумма")
+    reason = models.CharField(max_length=220, null=True, blank=True, verbose_name="причина отказы")
+    planned_summ = models.CharField(max_length=220, null=True, blank=True, verbose_name="Планируемая сумма")
+
+    def __str__(self):
+        return f"{self.tender_num} / {self.winner_name}"
+
+
+class Tizme(models.Model):
+    last_name = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Фамилия")
+    first_name = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Имя")
+    middle_name = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Отчество")
+    uik = models.CharField(max_length=1000, null=True, blank=True, verbose_name="УИК")
+    tik = models.CharField(max_length=1000, null=True, blank=True, verbose_name="ТИК")
+    oblast = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Область")
+
+    def __str__(self):
+        return f"{self.last_name} {self.first_name}"
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["last_name", "first_name", "middle_name"]),
+        ]
+
+
+class SupplierDetailed(models.Model):
+    tender_num = models.CharField(max_length=220, null=True, blank=True, verbose_name="Номер тендера")
+    zak_org = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Закупающая организация")
+    start = models.CharField(max_length=220, null=True, blank=True, verbose_name="Дата начала")
+    finish = models.CharField(max_length=220, null=True, blank=True, verbose_name="Дата конца")
+    tender_name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название тендера")
+    tender_summ = models.CharField(max_length=220, null=True, blank=True, verbose_name="Сумма тендера")
+    lots_number = models.CharField(max_length=220, null=True, blank=True, verbose_name="Номер лота")
+    lots_name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название лота")
+    supplier_name = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Название победителя")
+    gokz = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Гокз")
+    gokz_form = models.CharField(max_length=1000, null=True, blank=True, verbose_name="Форма когз")
+    proposed_summ = models.CharField(max_length=220, null=True, blank=True, verbose_name="Предложенная сумма")
+    planned_summ = models.CharField(max_length=220, null=True, blank=True, verbose_name="Планируемая сумма")
+
+    def __str__(self):
+        return f"{self.tender_num} / {self.supplier_name}"
+
+
+class Gkpen(models.Model):
+    license_number = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Номер лицензии и срок")
+    object_name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название обьекта")
+    firm = models.CharField(max_length=1220, null=True, blank=True, verbose_name="недропользователь")
+    inn_okpo = models.CharField(max_length=1220, null=True, blank=True, verbose_name="инн окпо")
+    place = models.CharField(max_length=3220, null=True, blank=True, verbose_name="местоположение")
+    contract = models.CharField(max_length=1220, null=True, blank=True, verbose_name="контракт")
+    kind_of_material = models.CharField(max_length=1220, null=True, blank=True, verbose_name="вид материала")
+    type_of_use = models.CharField(max_length=1220, null=True, blank=True, verbose_name="вид недропользования")
+    resource = models.CharField(max_length=1000, null=True, blank=True, verbose_name="ресурс")
+    square = models.CharField(max_length=1000, null=True, blank=True, verbose_name="площадь")
+    contacts = models.CharField(max_length=1000, null=True, blank=True, verbose_name="контакты")
+    glf = models.CharField(max_length=1220, null=True, blank=True, verbose_name="глф")
+    coordinates = models.CharField(max_length=1220, null=True, blank=True, verbose_name="координаты")
+
+    def __str__(self):
+        return f"{self.license_number} / {self.firm}"
+
+
+class TenderBlackList(models.Model):
+    inn = models.CharField(max_length=1220, null=True, blank=True, verbose_name="инн")
+    name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название фирмы")
+    start = models.DateTimeField(null=True, blank=True, verbose_name="Начало")
+    finish = models.DateTimeField(null=True, blank=True, verbose_name="конец")
+    justification = models.CharField(max_length=3220, null=True, blank=True, verbose_name="обоснование")
+
+    def __str__(self):
+        return f"{self.name} / {self.start}"
+
+
+class Smi(models.Model):
+    name_ru = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название на русском")
+    name_ky = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Название на кыргызском")
+    head = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Руководитель")
+    ownership = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Собственность")
+    max_volume = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Максимальный объем")
+    periodicity = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Периодичность")
+    postal_ddress = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Почтовый адрес")
+    propagation_area = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Место распространения")
+    phones = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Телефон")
+
+    def __str__(self):
+        return f"{self.name_ru}"
+
+
+class MinjustHistory(models.Model):
+    firm = models.ForeignKey("webapp.Firma", on_delete=models.CASCADE, related_name="history")
+    field_name = models.CharField(max_length=1220, verbose_name="Название поля")
+    old_data = models.CharField(max_length=10220, null=True, blank=True, verbose_name="Старое значение")
+    new_data = models.CharField(max_length=10220, null=True, blank=True, verbose_name="Новое значение")
+    update_date = models.DateField(auto_now_add=True, verbose_name="Дата обновления")
+
+    def __str__(self):
+        return f"{self.firm.short_name_ru} - {self.field_name}"
+
+
+class Farm(models.Model):
+    inn = models.CharField(max_length=1220, null=True, blank=True, verbose_name="ИНН")
+    okpo = models.CharField(max_length=1220, null=True, blank=True, verbose_name="ОКПО")
+    name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Наименование")
+    series = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Серия")
+    reg_number = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Рег. номер")
+    reciept = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Квитанция №")
+    sum = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Сумма")
+    from_date = models.CharField(max_length=1220, null=True, blank=True, verbose_name="От")
+    reg_certificate = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Свидетельства о гос. рег.")
+    issue_date = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Дата выдачи")
+    issued_by = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Кем выдан")
+    activity_kind = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Вид деятельности")
+    director = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Руководитель")
+    foreigners = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Иноcтранцы")
+    person_private = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Частное лицо")
+    pharmacy_number = models.CharField(max_length=1220, null=True, blank=True, verbose_name="№ Аптеки")
+    head_office = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Головное")
+    object = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Объект")
+    obl = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Область")
+    district = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Район")
+    city = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Город/Село")
+    address = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Адрес")
+    telephone = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Телефон")
+    spesialists = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Специалисты")
+    speciality = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Специальность")
+    diploma_data = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Данные диплома")
+    sertificate = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Сертификат")
+    date_of_issue = models.CharField(max_length=1220, null=True, blank=True, verbose_name="ДатаВыдачиЛиц" )
+    prikaz_number = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Номер приказа")
+    prikaz_date = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Дата приказа")
+    far = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Отдаленный")
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Bankrupt(models.Model):
+    status = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Статус")
+    tin = models.CharField(max_length=1220, null=True, blank=True, verbose_name="ИНН")
+    address = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Адрес")
+    name = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Наименование")
+    bankrot_type = models.CharField(max_length=1220, null=True, blank=True, verbose_name="Категория")
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class TenderBuyers(models.Model):
+    inn = models.CharField(max_length=220, null=True, blank=True, verbose_name="ИНН организации")
+    name = models.CharField(max_length=500, null=True, blank=True, verbose_name="Наименование организации")
+    form = models.CharField(max_length=500, null=True, blank=True, verbose_name="Форма собственности")
+    city = models.CharField(max_length=500, null=True, blank=True, verbose_name="Город")
+    address = models.CharField(max_length=2000, null=True, blank=True, verbose_name="Адрес")
+    phone = models.CharField(max_length=220, null=True, blank=True, verbose_name="Телефон")
+    bank = models.CharField(max_length=2000, null=True, blank=True, verbose_name="Банк")
+    checking_account = models.CharField(max_length=2000, null=True, blank=True, verbose_name="Расчетный счет")
+    bik = models.CharField(max_length=220, null=True, blank=True, verbose_name="БИК")
+    worker_name = models.CharField(max_length=220, null=True, blank=True, verbose_name="ФИО пользователя")
+    position = models.CharField(max_length=500, null=True, blank=True, verbose_name="Должность")
+    role = models.CharField(max_length=500, null=True, blank=True, verbose_name="Роль")
+
+    def __str__(self):
+        return self.name
