@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Firma(models.Model):
-    full_name_ru = models.CharField(max_length=500, null=True, blank=True, verbose_name='Полное наименование ru')
+    full_name_ru = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Полное наименование ru')
     full_name_kg = models.CharField(max_length=1000, null=True, blank=True, verbose_name='Полное наименование kg')
     short_name_ru = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сокращенное наименование ru')
     short_name_kg = models.CharField(max_length=220, null=True, blank=True, verbose_name='Сокращенное наименование kg')
