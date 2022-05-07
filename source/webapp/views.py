@@ -19,16 +19,16 @@ class IndexView(ListView):
     model = Firma
     template_name = 'index.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     firms = Firma.objects.count()
-    #     print(firms)
-    #     context['firms'] = Firma.objects.count()
-    #     context['peoples'] = People.objects.count()
-    #     context['budgets'] = OpenBudget.objects.count()
-    #     context['supliers'] = Supliers.objects.count()
-    #
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # firms = Firma.objects.count()
+        # print(firms)
+        context['firms_count'] = Firma.objects.count()
+        context['peoples_count'] = People.objects.count()
+        context['budgets_count'] = OpenBudget.objects.count()
+        context['supliers_count'] = Supliers.objects.count()
+
+        return context
 
 
 # class SearchView(ListView):
