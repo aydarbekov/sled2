@@ -10,7 +10,7 @@ from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView
 
 from webapp.models import Firma, People, OpenBudget, Supliers, Tender, WinnerDetailed, Tizme, Farm, Bankrupt, \
-    TenderBlackList, Gkpen, TenderBuyers, SupplierDetailed
+    TenderBlackList, Gkpen, TenderBuyers, SupplierDetailed, Smi
 
 PAGE_NUM_ITEMS = 10
 
@@ -27,6 +27,16 @@ class IndexView(ListView):
         context['peoples_count'] = People.objects.count()
         context['budgets_count'] = OpenBudget.objects.count()
         context['supliers_count'] = Supliers.objects.count()
+        context['bankrupts_count'] = Bankrupt.objects.count()
+        context['smi_count'] = Smi.objects.count()
+        context['farm_count'] = Farm.objects.count()
+        context['tender_buyers_count'] = TenderBuyers.objects.count()
+        context['suppliers_count'] = Supliers.objects.count()
+        context['gkpen_count'] = Gkpen.objects.count()
+        context['supplier_det_count'] = SupplierDetailed.objects.count()
+        context['tender_black_list_count'] = TenderBlackList.objects.count()
+        context['tizme_count'] = Tizme.objects.count()
+        context['winner_det_count'] = WinnerDetailed.objects.count()
 
         return context
 
@@ -327,7 +337,7 @@ class FirmaView(TemplateView):
 #         return render(request=request, template_name=self.template_name, context=context)
 
 
-class BudgetView(LoginRequiredMixin, ListView):
+class BudgetView(ListView):
     template_name = "open_budget.html"
     model = Firma
 
@@ -360,7 +370,7 @@ class BudgetView(LoginRequiredMixin, ListView):
         )
 
 
-class TenderView(LoginRequiredMixin, ListView):
+class TenderView(ListView):
     template_name = "tender_winners.html"
     context_object_name = "tenders"
     paginate_by = 50
@@ -379,7 +389,7 @@ class TenderView(LoginRequiredMixin, ListView):
         return context
 
 
-class SupplieredView(LoginRequiredMixin, ListView):
+class SupplieredView(ListView):
     template_name = "tender_suppliered.html"
     context_object_name = "tenders"
     paginate_by = 50
