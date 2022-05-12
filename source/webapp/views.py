@@ -352,7 +352,7 @@ class BudgetView(ListView):
         # if inn is not None:
         inn_object = OpenBudget.objects.filter(Q(inn__icontains=inn))
         # inn_objects.append(inn_object)
-        print(inn_object, "INN")
+        # print(inn_object, "INN")
         budget_objects = []
         for bs in inn_object:
             # for b in bs:

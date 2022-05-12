@@ -27,21 +27,21 @@
                         {% block menu %}{% endblock %}
                     </ul>
                 </ul>
-                {% if request.user.is_authenticated %}
-                    <span class="navbar-text"><a class="account" href="">{{ request.user }}</a></span>
-                    <span><a class="nav-link cartin" href="{% url 'accounts:logout' %}">Выйти</a></span>
-                {% else %}
-                    <a href="{% url 'accounts:login' %}" class="nav-link btn menu-button"></a>
-                {% endif %}
+{#                {% if request.user.is_authenticated %}#}
+{#                    <span class="navbar-text"><a class="account" href="">{{ request.user }}</a></span>#}
+{#                    <span><a class="nav-link cartin" href="{% url 'accounts:logout' %}">Выйти</a></span>#}
+{#                {% else %}#}
+{#                    <a href="{% url 'accounts:login' %}" class="nav-link btn menu-button"></a>#}
+{#                {% endif %}#}
             </div>
         </div>
     </nav>
 </header>
-<div class="container">
+{#<div class="container">#}
     {% block content %}
 
     {% endblock %}
-</div>
+{#</div>#}
 <footer>
 
 </footer>

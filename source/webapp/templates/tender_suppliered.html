@@ -36,7 +36,7 @@
     <div class="search-content">
         <div class="container-fluid">
             <dl class="row">
-                <h3 class="text-center">Тендеры в котором фирма выигрывала</h3>
+                <h3 class="text-center">Тендеры в котором фирма учавствовала</h3>
                 <div class="table-responsive">
                     <table class="table table-responsive table-striped table-hover">
                         <thead>
@@ -50,8 +50,8 @@
                             <th scope="col">Общая сумма тендера</th>
                             <th scope="col">Номер лота</th>
                             <th scope="col">Название лота</th>
-{#                            <th scope="col">Гокз</th>#}
-{#                            <th scope="col">Форма гокз</th>#}
+                            <th scope="col">Гокз</th>
+                            <th scope="col">Форма гокз</th>
                             <th scope="col">Предложенная сумма</th>
                             <th scope="col">Планируемая сумма</th>
                             {#                <th scope="col"></th>#}
@@ -102,18 +102,18 @@
                                     {% else %}
                                         <td>Нет данных</td>
                                     {% endif %}
-{#                                    {% if tender.gokz %}#}
-{#                                        <td>{{ tender.gokz }}</td>#}
-{#                                    {% else %}#}
-{#                                        <td>Без гокз</td>#}
-{#                                    {% endif %}#}
-{#                                    {% if tender.gokz_form %}#}
-{#                                        <td>{{ tender.gokz_form }}</td>#}
-{#                                    {% else %}#}
-{#                                        <td>Без гокз</td>#}
-{#                                    {% endif %}#}
-                                    {% if tender.winner_summ %}
-                                        <td>{{ tender.winner_summ }}</td>
+                                    {% if tender.gokz %}
+                                        <td>{{ tender.gokz }}</td>
+                                    {% else %}
+                                        <td>Без гокз</td>
+                                    {% endif %}
+                                    {% if tender.gokz_form %}
+                                        <td>{{ tender.gokz_form }}</td>
+                                    {% else %}
+                                        <td>Без гокз</td>
+                                    {% endif %}
+                                    {% if tender.proposed_summ %}
+                                        <td>{{ tender.proposed_summ }}</td>
                                     {% else %}
                                         <td>Нет данных</td>
                                     {% endif %}

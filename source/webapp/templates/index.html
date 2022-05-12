@@ -5,125 +5,129 @@
 {% endblock %}
 
 {% block content %}
-    {% if request.user.is_not_authenticated %}
-    {% endif %}
-    <h1 class="text-center"></h1>
-    <form action="{% url 'webapp:search'  %}" method="get" autocomplete="off" >
-        <div class="input-group">
-            {% if not search_str %}
-                <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации" >
-            {% else %}
-                <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder={{ search_str }}>
-            {% endif %}
-            <button type="submit" class="btn btn btn-dark">Поиск</button>
+    <div class="container">
+
+
+        {% if request.user.is_not_authenticated %}
+        {% endif %}
+        <h1 class="text-center"></h1>
+        <form action="{% url 'webapp:search'  %}" method="get" autocomplete="off" >
+            <div class="input-group">
+                {% if not search_str %}
+                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder="Введите ФИО или название организации" >
+                {% else %}
+                    <input type="text" class="form-control" name="search_str" value="{{ search_str }}" placeholder={{ search_str }}>
+                {% endif %}
+                <button type="submit" class="btn btn btn-dark">Поиск</button>
+            </div>
+        </form>
+        <div class="main-block">
+            <h1 class="sled">SLED.POLITMER.KG</h1>
+            <span class="descr">Мы собрали все доступные базы данных со связями, чтобы создать простой и эффективный инструмент поиска для журналистов и активистов, занимающихся общественным контролем.</span>
         </div>
-    </form>
-    <div class="main-block">
-        <h1 class="sled">SLED.POLITMER.KG</h1>
-        <span class="descr">Мы собрали все доступные базы данных со связями, чтобы создать простой и эффективный инструмент поиска для журналистов и активистов, занимающихся общественным контролем.</span>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ firms_count }}</h2>
-                    <p class="count_description">данных по базе минюст</p>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ firms_count }}</h2>
+                        <p class="count_description">данных по базе минюст</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ peoples_count }}</h2>
-                    <p class="count_description">данных по базе тизме</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ peoples_count }}</h2>
+                        <p class="count_description">данных по базе тизме</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ budgets_count }}</h2>
-                    <p class="count_description">данных по базе открытый бюджет</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ budgets_count }}</h2>
+                        <p class="count_description">данных по базе открытый бюджет</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ supliers_count }}</h2>
-                    <p class="count_description">данных по базе поставщиков с сайта госзакупок</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ supliers_count }}</h2>
+                        <p class="count_description">данных по базе поставщиков с сайта госзакупок</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ bankrupts_count }}</h2>
-                    <p class="count_description">данных по базе банкротов КР</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ bankrupts_count }}</h2>
+                        <p class="count_description">данных по базе банкротов КР</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ smi_count }}</h2>
-                    <p class="count_description">данных по базе СМИ</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ smi_count }}</h2>
+                        <p class="count_description">данных по базе СМИ</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ farm_count }}</h2>
-                    <p class="count_description">данных по базе фармацевтических лицензий</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ farm_count }}</h2>
+                        <p class="count_description">данных по базе фармацевтических лицензий</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ tender_buyers_count }}</h2>
-                    <p class="count_description">данных по базе закупающих организаций с сайта гос закупок</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ tender_buyers_count }}</h2>
+                        <p class="count_description">данных по базе закупающих организаций с сайта гос закупок</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ suppliers_count }}</h2>
-                    <p class="count_description">данных по базе поставщиков с сайта гос закупок</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ suppliers_count }}</h2>
+                        <p class="count_description">данных по базе поставщиков с сайта гос закупок</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ gkpen_count }}</h2>
-                    <p class="count_description">данных по базе недропользователей</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ gkpen_count }}</h2>
+                        <p class="count_description">данных по базе недропользователей</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ supplier_det_count }}</h2>
-                    <p class="count_description">поставщиков учавстников в тендерах с сайта гос закупок</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ supplier_det_count }}</h2>
+                        <p class="count_description">поставщиков учавстников в тендерах с сайта гос закупок</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ tender_black_list_count }}</h2>
-                    <p class="count_description">недобросовестных поставщиков с сайта гос закупок</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ tender_black_list_count }}</h2>
+                        <p class="count_description">недобросовестных поставщиков с сайта гос закупок</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="count_title">{{ tizme_count }}</h2>
-                    <p class="count_description">данных избирателей</p>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="count_title">{{ tizme_count }}</h2>
+                        <p class="count_description">данных избирателей</p>
+                    </div>
                 </div>
             </div>
         </div>
