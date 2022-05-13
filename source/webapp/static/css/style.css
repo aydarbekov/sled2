@@ -2,8 +2,8 @@ body{
     background-color: white;
     font-family:'Source Sans Pro', sans-serif;
     /*font-family: "Open Sans", sans-serif;*/
-  /*font-size: 14px;*/
-  /*line-height: 20px;*/
+    /*font-size: 14px;*/
+    /*line-height: 20px;*/
 }
 .navbar{
     background-color: white;
@@ -22,25 +22,25 @@ body{
 }
 
 .main-block{
-	margin-top: 30px;
+    margin-top: 30px;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 .main-block h2{
-	font-size: 30px;
-	color: #000;
-	font-weight: normal;
+    font-size: 30px;
+    color: #000;
+    font-weight: normal;
     margin-bottom: 20px;
 }
 .main-block p{
-	font-size: 16px;
-	color: #404040;
-	line-height: 26px;
-	padding-bottom: 10%;
+    font-size: 16px;
+    color: #404040;
+    line-height: 26px;
+    padding-bottom: 10%;
     max-width: 50%;
-	/*background: url(../images/bg-bricks.jpg);*/
-	/*background-repeat: no-repeat;*/
-	/*background-position: left bottom;*/
+    /*background: url(../images/bg-bricks.jpg);*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: left bottom;*/
 }
 
 a {
@@ -67,7 +67,7 @@ a {
 }
 
 /*.btn-outline-secondary{*/
-    /*width: 100%;*/
+/*width: 100%;*/
 /*}*/
 
 .btn-secondary{
@@ -233,4 +233,12 @@ a {
 
 .nav-link{
     color: #D5A867;
+}
+.logo2{
+    height: 115px;
+    width: 240px;
+    background-image: url(../logos/Sled-logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
 }
