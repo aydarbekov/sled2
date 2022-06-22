@@ -91,10 +91,7 @@ DATABASES = {
     }
 }
 
-try:
-    from .settings_local import *
-except ImportError:
-    pass
+
 
 
 
@@ -144,3 +141,7 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = reverse_lazy('webapp:search')
 LOGOUT_REDIRECT_URL = reverse_lazy('webapp:search')
 
+try:
+    from .settings_local import *
+except ImportError:
+    pass
