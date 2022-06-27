@@ -27,7 +27,7 @@ SECRET_KEY = 'z8o3))zm=f5*q&=vfl=gv)lm_m2p=t%%bmr&we+fprh=3@xwcf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =True
 
-ALLOWED_HOSTS = ['Sled.politmer.kg', '176.126.166.155', 'localhost']
+ALLOWED_HOSTS = ['Sled.politmer.kg', '37.218.246.231', 'localhost']
 
 
 # Application definition

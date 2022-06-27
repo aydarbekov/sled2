@@ -92,8 +92,8 @@
 {#                    <dd class="col-sm-9">{{ people.first_name }}</dd>#}
 {#                    <div class="col-sm-3">отчество</div>#}
 {#                    <dd class="col-sm-9">{{ people.middle_name }}</dd>#}
-                    {#                    <div class="col-sm-3">адрес</div>#}
-                    {#                    <dd class="col-sm-9">{{ people.address }}</dd>#}
+{#                    <div class="col-sm-3">адрес</div>#}
+{#                    <dd class="col-sm-9">{{ people.address }}</dd>#}
 {#                    <div class="col-sm-3">уик</div>#}
 {#                    <dd class="col-sm-9">{{ people.uik }}</dd>#}
 {#                    <div class="col-sm-3">тик</div>#}
@@ -149,8 +149,8 @@
 {% endblock %}
 {% block content %}
     {#        <a class="nav-link" href="{% url 'webapp:search' %}">home</a>#}
-{#    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ firma.0.full_name_ru }}</a>#}
-{#    <a class="nav-link budg" href="{% url "webapp:budget" firma.0.pk %}">Данные по базе открытый бюджет</a>#}
+    {#    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ firma.0.full_name_ru }}</a>#}
+    {#    <a class="nav-link budg" href="{% url "webapp:budget" firma.0.pk %}">Данные по базе открытый бюджет</a>#}
 
     <div class="header3 ">
         <div class="header3-cont container d-flex align-items-center justify-content-center flex-column position-relative">
@@ -165,18 +165,18 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav mr-auto mb-0 mb-md-2 mb-lg-0">
                         <ul class="navbar-nav ul-left">
-{#                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:firma_main' %}">Главная</a>#}
+                            {#                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:firma_main' %}">Главная</a>#}
                             {#                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:search' %}">Тарифы</a>#}
-{#                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:about' %}">О нас</a>#}
+                            {#                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:about' %}">О нас</a>#}
                         </ul>
                     </ul>
-{#                    {% if request.user.is_authenticated %}#}
-{#                        <span class="navbar-text"><a class="account" href="">{{ request.user }}</a></span>#}
-{#                        <span><a class="nav-link cartin" href="{% url 'accounts:logout' %}">Выйти</a></span>#}
-{#                    {% else %}#}
-{#                        <a href="{% url 'accounts:login' %}" class="nav-link btn menu-button">Войти</a>#}
-{#                        <a href="{% url 'accounts:login' %}" class="nav-link btn-success menu-button reg-btn">Регистрация</a>#}
-{#                    {% endif %}#}
+                    {#                    {% if request.user.is_authenticated %}#}
+                    {#                        <span class="navbar-text"><a class="account" href="">{{ request.user }}</a></span>#}
+                    {#                        <span><a class="nav-link cartin" href="{% url 'accounts:logout' %}">Выйти</a></span>#}
+                    {#                    {% else %}#}
+                    {#                        <a href="{% url 'accounts:login' %}" class="nav-link btn menu-button">Войти</a>#}
+                    {#                        <a href="{% url 'accounts:login' %}" class="nav-link btn-success menu-button reg-btn">Регистрация</a>#}
+                    {#                    {% endif %}#}
                 </div>
             </nav>
         </div>
@@ -902,8 +902,8 @@
                             </tbody>
                         </table>
 
-{#                        <button class="btn btn-dark my-2" type="button"><a class="link-light" href="{% url "webapp:tender" firma.pk suplier.name %}">Данные по выигравшим тендерам</a></button>#}
-{#                        <button class="btn btn-dark my-2" type="button"><a class="link-light" href="{% url "webapp:tender_created" firma.pk buyer.name %}">Данные по объявленным тендерам</a></button>#}
+                        {#                        <button class="btn btn-dark my-2" type="button"><a class="link-light" href="{% url "webapp:tender" firma.pk suplier.name %}">Данные по выигравшим тендерам</a></button>#}
+                        {#                        <button class="btn btn-dark my-2" type="button"><a class="link-light" href="{% url "webapp:tender_created" firma.pk buyer.name %}">Данные по объявленным тендерам</a></button>#}
                     {% endfor %}
                     {% if is_paginated %}
                         {% include 'partial/partial/pagination.html' %}
@@ -914,461 +914,498 @@
 
             </div>
         </div>
-        {% if request.user.is_authenticated %}
-            <div class="container card">
-                <h4 class="text-center base-title-det">База лицензий по недропользованию</h4>
-                {% if gkpens %}
-                    {% for gkpen in gkpens %}
-                        <table class="table table-striped table-hover">
-                            <tbody>
-                            <tr>
-                                <th scope="row">Номер, срок лицензии</th>
-                                <td>
-                                    {% if gkpen.license_number %}
-                                        <h7>{{ gkpen.license_number }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Название обьекта</th>
-                                <td>
-                                    {% if gkpen.object_name %}
-                                        <h7>{{ gkpen.object_name }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Недропользователь</th>
-                                <td>
-                                    {% if gkpen.firm %}
-                                        <h7>{{ gkpen.firm }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">ИНН/ОКПО</th>
-                                <td>
-                                    {% if gkpen.inn_okpo %}
-                                        <h7>{{ gkpen.inn_okpo }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Местоположение</th>
-                                <td>
-                                    {% if gkpen.place %}
-                                        <h7>{{ gkpen.place }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Контракт</th>
-                                <td>
-                                    {% if gkpen.contract %}
-                                        <h7>{{ gkpen.contract }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Вид материала</th>
-                                <td>
-                                    {% if gkpen.kind_of_material %}
-                                        <h7>{{ gkpen.kind_of_material }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Вид недропользования</th>
-                                <td>
-                                    {% if gkpen.type_of_use %}
-                                        <h7>{{ gkpen.type_of_use }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ресурс</th>
-                                <td>
-                                    {% if gkpen.resource %}
-                                        <h7>{{ gkpen.resource }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Площадь</th>
-                                <td>
-                                    {% if gkpen.square %}
-                                        <h7>{{ gkpen.square }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Контакты</th>
-                                <td>
-                                    {% if gkpen.contacts %}
-                                        <h7>{{ gkpen.contacts }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">ГЛФ</th>
-                                <td>
-                                    {% if gkpen.glf %}
-                                        <h7>{{ gkpen.glf }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Координаты</th>
-                                <td>
-                                    {% if gkpen.coordinates %}
-                                        <h7><a href="{{ gkpen.coordinates }}">{{ gkpen.coordinates }}</a></h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    {% endfor %}
-                    {% if is_paginated %}
-                        {% include 'partial/partial/pagination.html' %}
-                    {% endif %}
-                {% else %}
-                    <p class="tizmetext">Лицензий не найдено</p>
+        {#        {% if request.user.is_authenticated %}#}
+        <div class="container card">
+            <h4 class="text-center base-title-det">База лицензий по недропользованию</h4>
+            {% if gkpens %}
+                {% for gkpen in gkpens %}
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                        <tr>
+                            <th scope="row">Номер, срок лицензии</th>
+                            <td>
+                                {% if gkpen.license_number %}
+                                    <h7>{{ gkpen.license_number }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Название обьекта</th>
+                            <td>
+                                {% if gkpen.object_name %}
+                                    <h7>{{ gkpen.object_name }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Недропользователь</th>
+                            <td>
+                                {% if gkpen.firm %}
+                                    <h7>{{ gkpen.firm }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">ИНН/ОКПО</th>
+                            <td>
+                                {% if gkpen.inn_okpo %}
+                                    <h7>{{ gkpen.inn_okpo }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Местоположение</th>
+                            <td>
+                                {% if gkpen.place %}
+                                    <h7>{{ gkpen.place }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Контракт</th>
+                            <td>
+                                {% if gkpen.contract %}
+                                    <h7>{{ gkpen.contract }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Вид материала</th>
+                            <td>
+                                {% if gkpen.kind_of_material %}
+                                    <h7>{{ gkpen.kind_of_material }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Вид недропользования</th>
+                            <td>
+                                {% if gkpen.type_of_use %}
+                                    <h7>{{ gkpen.type_of_use }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ресурс</th>
+                            <td>
+                                {% if gkpen.resource %}
+                                    <h7>{{ gkpen.resource }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Площадь</th>
+                            <td>
+                                {% if gkpen.square %}
+                                    <h7>{{ gkpen.square }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Контакты</th>
+                            <td>
+                                {% if gkpen.contacts %}
+                                    <h7>{{ gkpen.contacts }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">ГЛФ</th>
+                            <td>
+                                {% if gkpen.glf %}
+                                    <h7>{{ gkpen.glf }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Координаты</th>
+                            <td>
+                                {% if gkpen.coordinates %}
+                                    <h7><a href="{{ gkpen.coordinates }}">{{ gkpen.coordinates }}</a></h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {% endfor %}
+                {% if is_paginated %}
+                    {% include 'partial/partial/pagination.html' %}
                 {% endif %}
-            </div>
-            <div class="container card">
-                <h4 class="text-center base-title-det">База лицензий по фармацевтической деятельности</h4>
-                {% if farms %}
-                    <h4 class="text-center base-title-det">Колическтво лицензий - {{ farms|length }}</h4>
-                    {% for farm in farms %}
-                        <table class="table table-striped table-hover">
-                            <tbody>
-                            <tr>
-                                <th scope="row">Наименование</th>
-                                <td>
-                                    {% if farm.name %}
-                                        <h7>{{ farm.name }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Серия</th>
-                                <td>
-                                    {% if farm.series %}
-                                        <h7>{{ farm.series }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Регистрационный номер</th>
-                                <td>
-                                    {% if farm.reg_number %}
-                                        <h7>{{ farm.reg_number }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Квитанция №</th>
-                                <td>
-                                    {% if farm.reciept %}
-                                        <h7>{{ farm.reciept }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Сумма</th>
-                                <td>
-                                    {% if farm.sum %}
-                                        <h7>{{ farm.sum }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">От</th>
-                                <td>
-                                    {% if farm.from_date %}
-                                        <h7>{{ farm.from_date }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Свидетельства о гос. регистрации</th>
-                                <td>
-                                    {% if farm.reg_certificate %}
-                                        <h7>{{ farm.reg_certificate }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Дата выдачи</th>
-                                <td>
-                                    {% if farm.issue_date %}
-                                        <h7>{{ farm.issue_date }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Кем выдан</th>
-                                <td>
-                                    {% if farm.issued_by %}
-                                        <h7>{{ farm.issued_by }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Вид деятельности</th>
-                                <td>
-                                    {% if farm.activity_kind %}
-                                        <h7>{{ farm.activity_kind }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Руководитель</th>
-                                <td>
-                                    {% if farm.director %}
-                                        <h7>{{ farm.director }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Иностранцы</th>
-                                <td>
-                                    {% if farm.foreigners %}
-                                        <h7>{{ farm.foreigners }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Частное лицо</th>
-                                <td>
-                                    {% if farm.person_private %}
-                                        <h7>{{ farm.person_private }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">№ аптеки</th>
-                                <td>
-                                    {% if farm.pharmacy_number %}
-                                        <h7>{{ farm.pharmacy_number }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Головное</th>
-                                <td>
-                                    {% if farm.head_office %}
-                                        <h7>{{ farm.head_office }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Объект</th>
-                                <td>
-                                    {% if farm.object %}
-                                        <h7>{{ farm.object }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Область</th>
-                                <td>
-                                    {% if farm.obl %}
-                                        <h7>{{ farm.obl }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Район</th>
-                                <td>
-                                    {% if farm.district %}
-                                        <h7>{{ farm.district }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Город</th>
-                                <td>
-                                    {% if farm.city %}
-                                        <h7>{{ farm.city }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Адрес</th>
-                                <td>
-                                    {% if farm.address %}
-                                        <h7>{{ farm.address }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Телефон</th>
-                                <td>
-                                    {% if farm.telephone %}
-                                        <h7>{{ farm.telephone }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Специалисты</th>
-                                <td>
-                                    {% if farm.spesialists %}
-                                        <h7>{{ farm.spesialists }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Специальность</th>
-                                <td>
-                                    {% if farm.speciality %}
-                                        <h7>{{ farm.speciality }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Данные диплома</th>
-                                <td>
-                                    {% if farm.diploma_data %}
-                                        <h7>{{ farm.diploma_data }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Сертификат</th>
-                                <td>
-                                    {% if farm.sertificate %}
-                                        <h7>{{ farm.sertificate }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Дата выдачи лицензии</th>
-                                <td>
-                                    {% if farm.date_of_issue %}
-                                        <h7>{{ farm.date_of_issue }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Номер приказа</th>
-                                <td>
-                                    {% if farm.prikaz_number %}
-                                        <h7>{{ farm.prikaz_number }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Дата приказа</th>
-                                <td>
-                                    {% if farm.prikaz_date %}
-                                        <h7>{{ farm.prikaz_date }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Отдаленный</th>
-                                <td>
-                                    {% if farm.far %}
-                                        <h7>{{ farm.far }}</h7>
-                                    {% else %}
-                                        <h7>Отсутствует</h7>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table><br><br><br>
-                    {% endfor %}
-                    {% if is_paginated %}
-                        {% include 'partial/partial/pagination.html' %}
-                    {% endif %}
-                {% else %}
-                    <p class="tizmetext">Лицензий не найдено</p>
+            {% else %}
+                <p class="tizmetext">Лицензий не найдено</p>
+            {% endif %}
+        </div>
+        <div class="container card">
+            <h4 class="text-center base-title-det">База лицензий по фармацевтической деятельности</h4>
+            {% if farms %}
+                <h4 class="text-center base-title-det">Колическтво лицензий - {{ farms|length }}</h4>
+                {% for farm in farms %}
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                        <tr>
+                            <th scope="row">Наименование</th>
+                            <td>
+                                {% if farm.name %}
+                                    <h7>{{ farm.name }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Серия</th>
+                            <td>
+                                {% if farm.series %}
+                                    <h7>{{ farm.series }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Регистрационный номер</th>
+                            <td>
+                                {% if farm.reg_number %}
+                                    <h7>{{ farm.reg_number }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Квитанция №</th>
+                            <td>
+                                {% if farm.reciept %}
+                                    <h7>{{ farm.reciept }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Сумма</th>
+                            <td>
+                                {% if farm.sum %}
+                                    <h7>{{ farm.sum }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">От</th>
+                            <td>
+                                {% if farm.from_date %}
+                                    <h7>{{ farm.from_date }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Свидетельства о гос. регистрации</th>
+                            <td>
+                                {% if farm.reg_certificate %}
+                                    <h7>{{ farm.reg_certificate }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Дата выдачи</th>
+                            <td>
+                                {% if farm.issue_date %}
+                                    <h7>{{ farm.issue_date }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Кем выдан</th>
+                            <td>
+                                {% if farm.issued_by %}
+                                    <h7>{{ farm.issued_by }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Вид деятельности</th>
+                            <td>
+                                {% if farm.activity_kind %}
+                                    <h7>{{ farm.activity_kind }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Руководитель</th>
+                            <td>
+                                {% if farm.director %}
+                                    <h7>{{ farm.director }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Иностранцы</th>
+                            <td>
+                                {% if farm.foreigners %}
+                                    <h7>{{ farm.foreigners }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Частное лицо</th>
+                            <td>
+                                {% if farm.person_private %}
+                                    <h7>{{ farm.person_private }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">№ аптеки</th>
+                            <td>
+                                {% if farm.pharmacy_number %}
+                                    <h7>{{ farm.pharmacy_number }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Головное</th>
+                            <td>
+                                {% if farm.head_office %}
+                                    <h7>{{ farm.head_office }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Объект</th>
+                            <td>
+                                {% if farm.object %}
+                                    <h7>{{ farm.object }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Область</th>
+                            <td>
+                                {% if farm.obl %}
+                                    <h7>{{ farm.obl }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Район</th>
+                            <td>
+                                {% if farm.district %}
+                                    <h7>{{ farm.district }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Город</th>
+                            <td>
+                                {% if farm.city %}
+                                    <h7>{{ farm.city }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Адрес</th>
+                            <td>
+                                {% if farm.address %}
+                                    <h7>{{ farm.address }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Телефон</th>
+                            <td>
+                                {% if farm.telephone %}
+                                    <h7>{{ farm.telephone }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Специалисты</th>
+                            <td>
+                                {% if farm.spesialists %}
+                                    <h7>{{ farm.spesialists }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Специальность</th>
+                            <td>
+                                {% if farm.speciality %}
+                                    <h7>{{ farm.speciality }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Данные диплома</th>
+                            <td>
+                                {% if farm.diploma_data %}
+                                    <h7>{{ farm.diploma_data }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Сертификат</th>
+                            <td>
+                                {% if farm.sertificate %}
+                                    <h7>{{ farm.sertificate }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Дата выдачи лицензии</th>
+                            <td>
+                                {% if farm.date_of_issue %}
+                                    <h7>{{ farm.date_of_issue }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Номер приказа</th>
+                            <td>
+                                {% if farm.prikaz_number %}
+                                    <h7>{{ farm.prikaz_number }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Дата приказа</th>
+                            <td>
+                                {% if farm.prikaz_date %}
+                                    <h7>{{ farm.prikaz_date }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Отдаленный</th>
+                            <td>
+                                {% if farm.far %}
+                                    <h7>{{ farm.far }}</h7>
+                                {% else %}
+                                    <h7>Отсутствует</h7>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table><br><br><br>
+                {% endfor %}
+                {% if is_paginated %}
+                    {% include 'partial/partial/pagination.html' %}
                 {% endif %}
-            </div>
-        {% endif %}
+            {% else %}
+                <p class="tizmetext">Лицензий не найдено</p>
+            {% endif %}
+        </div>
+        {#        {% endif %}#}
+        <div class="container card">
+            <h4 class="text-center base-title-det">История изменений</h4>
+            {% if firma.history %}
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="row">Поле</th>
+                        <th scope="row">Было</th>
+                        <th scope="row">Стало</th>
+                        <th scope="row">Дата фиксации</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in firma.history.all %}
+                        <tr>
+                            <td>
+                                <h7>{{ obj.field_name }}</h7>
+                            </td>
+                            <td>
+                                <h7>{{ obj.old_data }}</h7>
+                            </td>
+                            <td>
+                                <h7>{{ obj.new_data }}</h7>
+                            </td>
+                            <td>
+                                <h7>{{ obj.update_date|date:'d-m-Y' }}</h7>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="tizmetext">данные отсутствуют</p>
+            {% endif %}
+        </div>
         <div class="fdsf text-center d-flex flex-column justify-content-center align-items-center mt-0">
             {% if firma.inn %}
                 <button class="btn btn-dark my-2" type="button"><a class="link-light" href="{% url "webapp:budget" firma.pk %}">Данные по базе открытый бюджет</a></button>
