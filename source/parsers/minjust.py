@@ -3,12 +3,12 @@ import multiprocessing
 import time
 
 import requests
-import telebot
+# import telebot
 from bs4 import BeautifulSoup
 
 from webapp.models import Firma
 
-bot = telebot.TeleBot('1872481226:AAGh_k5eWvDIA05V9AsMpOlylvyuYHZ78yQ')
+# bot = telebot.TeleBot('5390689400:AAHJ7w8vJsY9zxpPd8BsF4BRUvTrbeY5mPM')
 # для нового пользователя
 # 659261315 акыл
 # @bot.message_handler(commands=['start'])
@@ -22,7 +22,7 @@ bot = telebot.TeleBot('1872481226:AAGh_k5eWvDIA05V9AsMpOlylvyuYHZ78yQ')
 # # bot.send_message(659261315, 'It works!')
 #
 # bot.send_message(659261315, f'Начал парсинг минюста - {datetime.datetime.now()}')
-bot = telebot.TeleBot("1872481226:AAGh_k5eWvDIA05V9AsMpOlylvyuYHZ78yQ")
+# bot = telebot.TeleBot("1872481226:AAGh_k5eWvDIA05V9AsMpOlylvyuYHZ78yQ")
 
 
 def load_link(link):
@@ -109,16 +109,29 @@ def compare(obj, obj_field, field_name, old_value, new_value):
                 obj.save()
 
 
-def parse_minjust(count_start, end):
-    bot = telebot.TeleBot("1872481226:AAGh_k5eWvDIA05V9AsMpOlylvyuYHZ78yQ")
+# def parse_minjust(count_start, end):
+def parse_minjust():
+    count_start = 0
+
+    print('started!!!!!!!')
+    to_count = load_link(
+        "https://register.minjust.gov.kg/register/SearchAction.seam?firstResult=50"
+    )
+    bs_to_count = BeautifulSoup(to_count.text, "html.parser")
+    count_div = bs_to_count.find("div", {"class": "rich-panel-header"})
+    # print(count_div.text)
+    count = int(count_div.text.split("(")[1].strip(" )"))
+
+    # bot = telebot.TeleBot("1872481226:AAGh_k5eWvDIA05V9AsMpOlylvyuYHZ78yQ")
     # bot.send_message(659261315, 'It works!')
 
-    bot.send_message(659261315, f"Начал парсинг минюста - {datetime.datetime.now()}")
+    # bot.send_message(659261315, f"Начал парсинг минюста - {datetime.datetime.now()}")
     try:
         while True:
-            if count_start == end:
+            print(count_start)
+            if count_start >= count:
                 # print(f"Мин юст - закончил до {end}")
-                bot.send_message(659261315, f"Мин юст - закончил 10к до {end}")
+                # bot.send_message(659261315, f"Мин юст - закончил 10к до {end}")
                 break
             main = load_link(
                 f"https://register.minjust.gov.kg/register/SearchAction.seam?firstResult={count_start}&logic=and&cid=4738576"
@@ -132,6 +145,7 @@ def parse_minjust(count_start, end):
             for tr in trs:
                 link = tr.find("a")
                 href = link.get("href")
+                print(href)
                 # print("https://register.minjust.gov.kg/" + href)
                 detail = load_link("https://register.minjust.gov.kg/" + href)
                 # print(detail)
@@ -349,6 +363,7 @@ def parse_minjust(count_start, end):
                     "founders": founders,
                     "url_minjust_site": url_minjust_site,
                 }
+                # print(new_data)
                 # with open('minjust.csv', 'a+', newline='') as file:
                 #     writer = csv.writer(file, delimiter='|')
                 #     writer.writerow(firm_info)
@@ -359,6 +374,7 @@ def parse_minjust(count_start, end):
                         okpo_cod=okpo_cod,
                         registration_number=registration_number,
                     )
+                    print('FIRMA FOUNDED!!!!!!!!!!!')
                     for field in Firma._meta.get_fields():
                         if (
                             field.name != "history"
@@ -392,10 +408,12 @@ def parse_minjust(count_start, end):
                 except Firma.DoesNotExist:
                     # print(f"!!!Сохраняю новый - {inn}")
                     Firma.objects.create(**new_data)
+                    print('NEW CREATED')
                     detail_html.decompose()
             bs_html.decompose()
     except:
-        bot.send_message(659261315, f"ошибка в вайл на {count_start} и вышел ")
+        pass
+        # bot.send_message(659261315, f"ошибка в вайл на {count_start} и вышел ")
 
 
 # count = 148000
