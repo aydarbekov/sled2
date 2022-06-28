@@ -110,6 +110,9 @@ def compare(obj, obj_field, field_name, old_value, new_value):
 
 
 # def parse_minjust(count_start, end):
+def parse_test():
+    print('hi!!!')
+
 def parse_minjust():
     count_start = 0
 

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'webapp',
     'accounts',
-
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +140,11 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('webapp:search')
 LOGOUT_REDIRECT_URL = reverse_lazy('webapp:search')
+
+CRONJOBS = [
+    ('*/10 * * * *', 'parsers.minjust.parse_minjust', '>>/tmp/test.log')
+]
+
 
 try:
     from .settings_local import *
