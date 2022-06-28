@@ -142,7 +142,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('webapp:search')
 LOGOUT_REDIRECT_URL = reverse_lazy('webapp:search')
 
 CRONJOBS = [
-    ('*/10 * * * *', 'parsers.minjust.parse_minjust', '>>/tmp/test.log')
+    ('*/2 * * * *', 'parsers.minjust.parse_test', '>>/tmp/test.log')
 ]
 
 
